@@ -30,6 +30,14 @@ def create_app(test_config=None):
     # Set the default config file
     env = os.environ.get("FLASK_ENV", "production")  # Default to production
 
+    # Load the appropriate config file
+    if env == "development":
+        app.config.from_object("config.DevelopmentConfig")
+    elif env == "testing":
+        app.config.from_object("config.TestingConfig")
+    else:
+        app.config.from_object("config.ProductionConfig")
+
     # Ensure the instance folder exists
     try:
         os.makedirs(app.instance_path)
