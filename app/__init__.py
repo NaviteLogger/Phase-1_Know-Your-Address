@@ -38,10 +38,4 @@ def create_app(test_config=None):
     else:
         app.config.from_object("config.ProductionConfig")
 
-    # Ensure the instance folder exists
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
-
     return app
