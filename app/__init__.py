@@ -31,11 +31,11 @@ def create_app(test_config=None):
     env = os.environ.get("FLASK_ENV", "production")  # Default to production
 
     # Load the appropriate config file
-    if env == "development":
+    if os.environ.get("FLASK_ENV") == "development":
         app.config.from_object("config.DevelopmentConfig")
-    elif env == "testing":
+    elif os.environ.get("FLASK_ENV") == "testing":
         app.config.from_object("config.TestingConfig")
-    else:
+    elif os.environ.get("FLASK_ENV") == "production":
         app.config.from_object("config.ProductionConfig")
 
     return app
