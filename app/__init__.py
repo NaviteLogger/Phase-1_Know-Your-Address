@@ -19,7 +19,7 @@ configurations. This is particularly useful for:
 
 def create_app(test_config=None):
     # Create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__)
 
     # Load the instance config, if it exists, when not testing
     if test_config is None:
