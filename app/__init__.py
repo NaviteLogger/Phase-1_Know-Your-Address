@@ -32,10 +32,10 @@ def create_app(test_config=None):
 
     # Load the appropriate config file
     if os.environ.get("FLASK_ENV") == "development":
-        app.config.from_object("config.DevelopmentConfig")
+        app.config.from_object("instance.config.DevelopmentConfig")
     elif os.environ.get("FLASK_ENV") == "testing":
-        app.config.from_object("config.TestingConfig")
+        app.config.from_object("instance.config.TestingConfig")
     elif os.environ.get("FLASK_ENV") == "production":
-        app.config.from_object("config.ProductionConfig")
+        app.config.from_object("instance.config.ProductionConfig")
 
     return app
