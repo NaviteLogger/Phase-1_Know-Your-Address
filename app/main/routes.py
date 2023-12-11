@@ -1,16 +1,8 @@
-from flask import render_template, request, current_app
-from . import main
+from flask import Blueprint, render_template
 
-google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
+main_bp = Blueprint("main_bp", __name__)
 
 
-# Handle the GET request for the '/' url
-@main.route("/")
+@main_bp.route("/")
 def index():
     return render_template("index.html")
-
-
-# Handle the POST request for the '/search' url
-@main.route("/search", methods=["POST"])
-def search():
-    address = request.form[address]
