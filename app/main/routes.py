@@ -1,6 +1,7 @@
-from flask import render_template
-from flask import request
+from flask import render_template, request, current_app
 from . import main
+
+google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
 
 
 # Handle the GET request for the '/' url
