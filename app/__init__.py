@@ -1,7 +1,6 @@
-import os
-
 from flask import Flask
 from dotenv import load_dotenv
+import os
 
 """ 
 The "Application Factory" (in this case the 'create_app' function) is a 
@@ -37,5 +36,10 @@ def create_app(test_config=None):
         app.config.from_object("instance.config.TestingConfig")
     elif os.environ.get("FLASK_ENV") == "production":
         app.config.from_object("instance.config.ProductionConfig")
+
+    # Register the required blueprints
+    from .main.routes import main as main_blueprint
+
+    app.register_blueprint(main_blueprint)
 
     return app
