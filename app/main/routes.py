@@ -1,4 +1,5 @@
 from flask import render_template
+from flask import request
 from . import main
 
 
@@ -10,3 +11,5 @@ def index():
 
 # Handle the POST request for the '/search' url
 @main.route("/search", methods=["POST"])
+def search():
+    address = request.form[address]
