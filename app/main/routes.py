@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, current_app, request
+import requests
 
 main_bp = Blueprint("main_bp", __name__)
 
