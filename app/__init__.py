@@ -3,9 +3,6 @@ import os
 from flask import Flask
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
-load_dotenv()
-
 """ 
 The "Application Factory" (in this case the 'create_app' function) is a 
 pattern in Flask where the application is created inside a function,
@@ -26,6 +23,9 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
+
+    # Load environment variables from .env file
+    load_dotenv()
 
     # Set the default config file
     env = os.environ.get("FLASK_ENV", "production")  # Default to production
