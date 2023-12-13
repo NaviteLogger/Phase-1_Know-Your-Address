@@ -19,4 +19,4 @@ def search():
 
     # Step 1: Get the latitude and longitude of the address
     # Build the URL for the Google Maps API
-    geocoding_url = f'https://maps.googleapis.com/maps/api/geocode/json?address={address}&key={current_app.config["GOOGLE_MAPS_API_KEY"]}'
+    geocoding_url = f"https://maps.googleapis.com/maps/api/geocode/json?address={address}&key={google_maps_api_key}"
