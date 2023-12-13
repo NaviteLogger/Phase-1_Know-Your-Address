@@ -36,4 +36,4 @@ def search():
 
     else:
         # Return an error message if the address is not found
-        return jsonify({"error": "Address not found"}), 404
+        return jsonify({"error": "There was an error while fetching the address."}), 404
