@@ -42,6 +42,9 @@ def search():
             # Process the response to get the list of nearby stops
             transport_stops = nearby_stops_response["results"]
 
+            # Return the list of nearby stops to frontend
+            return jsonify(transport_stops), 200
+
         else:
             # Return an error message if the nearby stops are not found
             return jsonify({"error": "There was an error while fetching the nearby stops for the given address."}), 404
