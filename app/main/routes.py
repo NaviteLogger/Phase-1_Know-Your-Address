@@ -25,4 +25,7 @@ def search():
     geocoding_response = requests.get(geocoding_url).json()
 
     # Check the status code of the response
-    if geocoding_response["status"] == 'OK':
+    if geocoding_response["status"] == "OK":
+        # Get the latitude and longitude of the address
+        latitude = geocoding_response["results"][0]["geometry"]["location"]["lat"]
+        longitude = geocoding_response["results"][0]["geometry"]["location"]["lng"]
