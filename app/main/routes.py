@@ -23,3 +23,6 @@ def search():
 
     # Send the request to the Google Maps API
     geocoding_response = requests.get(geocoding_url).json()
+
+    # Check the status code of the response
+    if geocoding_response["status"] == 'OK':
