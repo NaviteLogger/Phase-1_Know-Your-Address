@@ -37,6 +37,10 @@ def search():
         # Send the request to the Google Maps API
         nearby_stops_response = requests.get(nearby_stops_url).json()
 
+        # Check the status code of the response
+        if nearby_stops_response["status"] == "OK":
+            # Process the response to get the list of nearby stops
+
     else:
         # Return an error message if the address is not found
         return jsonify({"error": "There was an error while fetching the address."}), 404
