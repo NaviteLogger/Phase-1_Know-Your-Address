@@ -34,6 +34,9 @@ def search():
         # Build the URL for the Google Maps API
         nearby_stops_url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={latitude},{longitude}&radius=500&type=bus_station&key={google_maps_api_key}"
 
+        # Send the request to the Google Maps API
+        nearby_stops_response = requests.get(nearby_stops_url).json()
+
     else:
         # Return an error message if the address is not found
         return jsonify({"error": "There was an error while fetching the address."}), 404
