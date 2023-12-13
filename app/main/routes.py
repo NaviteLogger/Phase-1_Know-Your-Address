@@ -29,3 +29,7 @@ def search():
         # Get the latitude and longitude of the address
         latitude = geocoding_response["results"][0]["geometry"]["location"]["lat"]
         longitude = geocoding_response["results"][0]["geometry"]["location"]["lng"]
+
+    else:
+        # Return an error message if the address is not found
+        return jsonify({"error": "Address not found"}), 404
