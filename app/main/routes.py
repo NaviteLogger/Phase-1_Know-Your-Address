@@ -40,6 +40,7 @@ def search():
         # Check the status code of the response
         if nearby_stops_response["status"] == "OK":
             # Process the response to get the list of nearby stops
+            transport_stops = nearby_stops_response["results"]
 
         else:
             # Return an error message if the nearby stops are not found
