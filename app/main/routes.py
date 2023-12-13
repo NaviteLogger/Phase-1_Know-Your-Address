@@ -41,6 +41,10 @@ def search():
         if nearby_stops_response["status"] == "OK":
             # Process the response to get the list of nearby stops
 
+        else:
+            # Return an error message if the nearby stops are not found
+            return jsonify({"error": "There was an error while fetching the nearby stops for the given address."}), 404
+
     else:
         # Return an error message if the address is not found
         return jsonify({"error": "There was an error while fetching the address."}), 404
