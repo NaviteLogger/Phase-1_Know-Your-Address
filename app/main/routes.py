@@ -30,6 +30,10 @@ def search():
         latitude = geocoding_response["results"][0]["geometry"]["location"]["lat"]
         longitude = geocoding_response["results"][0]["geometry"]["location"]["lng"]
 
+        # Step 2: Using the latitude and longitude, get the nearby public transport stops
+        # Build the URL for the Google Maps API
+        nearby_stops_url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={latitude},{longitude}&radius=500&type=bus_station&key={google_maps_api_key}"
+
     else:
         # Return an error message if the address is not found
         return jsonify({"error": "Address not found"}), 404
