@@ -37,11 +37,10 @@ def create_app(test_config=None):
     elif os.environ.get("FLASK_ENV") == "production":
         app.config.from_object("instance.config.ProductionConfig")
 
-    # Register the required blueprints
-    from .main.routes import main as main_blueprint
+    # Register blueprints within app context
+    with app.app_context():
+        from .main.routes import main as main_blueprint
 
-    # Ensure blueprints are registered within the application context
-    with app.test_request_context():
         app.register_blueprint(main_blueprint)
 
     return app
