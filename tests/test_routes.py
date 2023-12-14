@@ -15,6 +15,7 @@ def app():
     [
         ("sample_address", 200, b"ExpectedContent1"),
         ("sample_address2", 200, b"ExpectedContent2"),
+        ("sample_address3", 200, b"ExpectedContent3"),
     ],
 )
 def test_search_route(client, input_address, expected_status_code, expected_returned_content):
