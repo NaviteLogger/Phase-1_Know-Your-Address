@@ -38,9 +38,9 @@ def create_app(test_config=None):
         app.config.from_object("instance.config.ProductionConfig")
 
     # Register blueprints within app context
-    with app.app_context():
-        from .main.routes import main as main_blueprint
+    from .main.routes import main as main_blueprint
 
+    with app.app_context():
         app.register_blueprint(main_blueprint)
 
     return app
