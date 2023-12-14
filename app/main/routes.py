@@ -3,9 +3,6 @@ import requests
 
 main_bp = Blueprint("main_bp", __name__)
 
-# Get the Google Maps API key stored in the configurtion file
-google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
-
 
 @main_bp.route("/")
 def index():
@@ -14,6 +11,9 @@ def index():
 
 @main_bp.route("/search", methods=["POST"])
 def search():
+    # Get the Google Maps API key stored in the configurtion file
+    google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
+
     # Get the search address from the form
     address = request.form["address"]
 
