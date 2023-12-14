@@ -11,13 +11,13 @@ def app():
 
 
 @pytest.mark.parametrize(
-    "address, expected_content",
+    "input_address, expected_status_code, expected_returned_content",
     [
-        ("sample_address", b"ExpectedContent1"),
-        ("sample_address2", b"ExpectedContent2"),
+        ("sample_address", 200, b"ExpectedContent1"),
+        ("sample_address2", 200, b"ExpectedContent2"),
     ],
 )
-def test_search_route(client, address, expected_content):
-    response = client.get(url_for("main.search"), data={"address": address})
-    assert response.status_code == 200
-    assert expected_content in response.data
+def test_search_route(client, input_address, expected_status_code, expected_returned_content):
+    response = client.post("/search", data={"address": input_address})
+    assert response.status_code == expected_status_code
+    assert expected_returned_content in response.data
