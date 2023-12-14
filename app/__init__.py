@@ -40,7 +40,7 @@ def create_app(test_config=None):
     # Register blueprints within app context
     from .main.routes import main as main_blueprint
 
-    with app.app_context():
-        app.register_blueprint(main_blueprint)
+    # Register the main blueprint
+    app.register_blueprint(main_blueprint)
 
     return app
