@@ -6,8 +6,8 @@ from app import create_app
 @pytest.fixture
 def app():
     app = create_app("config.TestingConfig")
-    with app.app_context():
-        yield app
+    with app.test_client() as client:
+        yield client
 
 
 @pytest.mark.parametrize(
