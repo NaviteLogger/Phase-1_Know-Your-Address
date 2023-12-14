@@ -41,7 +41,7 @@ def create_app(test_config=None):
     from .main.routes import main as main_blueprint
 
     # Ensure blueprints are registered within the application context
-    with app.app_context():
+    with app.test_request_context():
         app.register_blueprint(main_blueprint)
 
     return app
