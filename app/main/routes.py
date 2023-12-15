@@ -40,6 +40,13 @@ def search():
             },
         }
 
+        # Define the headers for the request
+        headers = {
+            "Content-Type": "application/json",
+            "X-Goog-Api-Key": google_maps_api_key,
+            "X-Goog-FieldMask": "places.displayName",
+        }
+
         # Send the request to the Google Maps API
         nearby_stops_response = requests.get(nearby_stops_url).json()
 
