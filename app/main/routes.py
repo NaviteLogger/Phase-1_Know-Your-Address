@@ -47,8 +47,9 @@ def search():
             "X-Goog-FieldMask": "places.displayName",
         }
 
-        # Send the request to the Google Maps API
-        nearby_stops_response = requests.get(nearby_stops_url).json()
+        # Make the POST request to the Google Maps API
+        url = "https://places.googleapis.com/v1/places:searchNearby"
+        response = requests.post(url, json=payload, headers=headers)
 
         # Check the status code of the response
         if nearby_stops_response["status"] == "OK":
