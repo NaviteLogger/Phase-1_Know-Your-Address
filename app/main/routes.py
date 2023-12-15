@@ -35,6 +35,9 @@ def search():
         payload = {
             "includedTypes": "bus_station|subway_station|train_station|transit_station",
             "maxResultsCount": 10,
+            "locationRestriction": {
+                "circle": {"center": {"latitude": latitude, "longitude": longitude}, "radiusMeters": 1000}
+            },
         }
 
         # Send the request to the Google Maps API
