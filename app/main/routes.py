@@ -52,16 +52,15 @@ def search():
         response = requests.post(url, json=payload, headers=headers)
 
         # Check the status code of the response
-        if nearby_stops_response["status"] == "OK":
-            # Process the response to get the list of nearby stops
-            transport_stops = nearby_stops_response["results"]
-
-            # Return the list of nearby stops to frontend
-            return jsonify(transport_stops), 200
+        if response.status_code == 200:
+            # Process the response JSON as needed
+            result_data = response.json()
+            return jsonify(result_data)
 
         else:
             # Return an error message if the nearby stops are not found
-            return jsonify({"error": "There was an error while fetching the nearby stops for the given address."}), 404
+            error_message = f"Error {response.status_code}: {response.text}"
+            return jsonify({"error": error_message})
 
     else:
         # Return an error message if the address is not found
