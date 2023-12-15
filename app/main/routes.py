@@ -31,8 +31,11 @@ def search():
         longitude = geocoding_response["results"][0]["geometry"]["location"]["lng"]
 
         # Step 2: Using the latitude and longitude, get the nearby public transport stops
-        # Build the URL for the Google Maps API
-        nearby_stops_url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={latitude},{longitude}&radius=500&type=bus_station&key={google_maps_api_key}"
+        # Build the request for the Google Maps API
+        payload = {
+            "includedTypes": "bus_station|subway_station|train_station|transit_station",
+            "maxResultsCount": 10,
+        }
 
         # Send the request to the Google Maps API
         nearby_stops_response = requests.get(nearby_stops_url).json()
