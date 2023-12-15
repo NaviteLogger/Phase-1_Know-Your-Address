@@ -26,9 +26,6 @@ def create_app(test_config=None):
     # Load environment variables from .env file
     load_dotenv()
 
-    # Set the default config file
-    env = os.environ.get("FLASK_ENV", "production")  # Default to production
-
     # Load the appropriate config file
     if os.environ.get("FLASK_ENV") == "development":
         app.config.from_object("instance.config.DevelopmentConfig")
@@ -36,6 +33,8 @@ def create_app(test_config=None):
         app.config.from_object("instance.config.TestingConfig")
     elif os.environ.get("FLASK_ENV") == "production":
         app.config.from_object("instance.config.ProductionConfig")
+    else:
+        print("FLASK_ENV environment variable is not set!")
 
     # Register blueprints within app context
     from app.main import main as main_blueprint
