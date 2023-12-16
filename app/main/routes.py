@@ -26,6 +26,11 @@ def validateTheGivenAddress():
         }
     }
 
+    # Step 2: Build the headers for the Google Maps API
+    headers = {
+        "Content-Type": "application/json",
+    }
+
 
 @main_bp.route("/retrieveCoordinatesForTheAddress", methods=["POST"])
 def retrieveCoordinatesForTheAddress():
