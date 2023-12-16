@@ -74,7 +74,10 @@ A website for checking the public transport accessibility for an address
 
 5. Create a new Pull Request
 
+## Support
 
+Reach out to me at one of the following places!
+[email](mailto:kacprzakmarek92@gmail.com)
 
 ## License
 
