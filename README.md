@@ -42,7 +42,9 @@ A website for checking the public transport accessibility for an address
 
 ### Environment Variables
 
+1. Create a file named `.env` in the root directory of the project
 
+2. Fill in the required environmental variables
 
 
 ## License
