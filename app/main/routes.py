@@ -8,6 +8,10 @@ main_bp = Blueprint("main_bp", __name__)
 def index():
     return render_template("index.html")
 
+@main_bp.route("/validateTheGivenAddress", methods=["POST"])
+def validateTheGivenAddress():
+    
+
 
 @main_bp.route("/retrieveCoordinatesForTheAddress", methods=["POST"])
 def retrieveCoordinatesForTheAddress():
