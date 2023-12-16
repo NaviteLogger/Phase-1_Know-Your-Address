@@ -35,7 +35,15 @@ def validateTheGivenAddress():
     url = f"https://addressvalidation.googleapis.com/v1:validateAddress?key={google_maps_api_key}"
 
     # Step 4: Send the request to the Google Maps API
-    response = requests.post(autocomplete_url, json=payload, headers=headers)
+    response = requests.post(url, json=payload, headers=headers)
+
+    # Step 5: Deal with the incoming response from the Google Maps API
+    if response.status_code == 200:
+        # If the response is successful, return the response data
+        return response.json()
+    else:
+        # If the response is unsuccessful, return the error message
+        return response.json()["error"]["message"]
 
 
 @main_bp.route("/retrieveCoordinatesForTheAddress", methods=["POST"])
