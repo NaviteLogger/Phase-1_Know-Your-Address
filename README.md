@@ -46,6 +46,14 @@ A website for checking the public transport accessibility for an address
 
 2. Fill in the required environmental variables
 
+## Usage
+
+1. Run the server
+    ```bash
+    flask run
+    ```
+
+
 
 ## License
 
