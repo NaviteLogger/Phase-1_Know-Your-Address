@@ -46,7 +46,11 @@ def validateTheGivenAddress():
     else:
         # Store an error message in the session
         session["address_validation_error"] = f"Error {response.status_code}: {response.text}"
+        print(f"Error while fetching Google Maps API for the address validation: {response.status_code}: {response.text}")
         return response.status_code
+    
+@main_bp.route("/manageTheAddressValidationResult", methods=["POST"])
+def manageTheAddressValidationResult():
 
 
 @main_bp.route("/retrieveCoordinatesForTheAddress", methods=["POST"])
