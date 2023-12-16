@@ -6,6 +6,7 @@ A website for checking the public transport accessibility for an address
 - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installing](#installing)
+    - [Environment Variables](#environment-variables)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [Support](#support)
@@ -25,6 +26,22 @@ A website for checking the public transport accessibility for an address
 1. Clone the repository
     ```bash
     git clone
+    ```
+
+2. Install Python, pip, Node.js and npm
+
+3. Install Python dependencies
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. Install Node.js dependencies
+    ```bash
+    npm install
+    ```
+
+
+
 
 ## License
 
