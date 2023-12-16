@@ -16,8 +16,15 @@ def validateTheGivenAddress():
 
     # Get the search address from the form
     address = request.json["address"]
+    region_code = request.json["regionCode"]
 
-    # Step 1: Obtain the OAuth 2.0 access token
+    # Step 1: Build the JSON request body for the Google Maps API
+    payload = {
+        "address": {
+            "regionCode": region_code,
+            "addressLine1": address,
+        }
+    }
 
 
 @main_bp.route("/retrieveCoordinatesForTheAddress", methods=["POST"])
