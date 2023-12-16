@@ -53,6 +53,27 @@ A website for checking the public transport accessibility for an address
     flask run
     ```
 
+## Contributing
+
+1. Fork it 
+
+2. Create your feature branch
+    ```bash
+    git checkout -b feature/your-feature
+    ```
+
+3. Commit your changes
+    ```bash
+    git commit -am 'Add some feature'
+    ```
+
+4. Push to the branch
+    ```bash
+    git push origin feature/your-feature
+    ```
+
+5. Create a new Pull Request
+
 
 
 ## License
