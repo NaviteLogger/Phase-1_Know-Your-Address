@@ -65,6 +65,9 @@ def retrieveCoordinatesForAnAddress():
     else:
         # Return an error message if the address is not found
         return jsonify({"error": "There was an error while fetching the address."}), 404
-    
+
+
 @main_bp.route("/retrievePublicTransportInformationForTheGivenAddress", methods=["POST"])
 def retrievePublicTransportInformationForTheGivenAddress():
+    # Get the Google Maps API key stored in the configurtion file
+    google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
