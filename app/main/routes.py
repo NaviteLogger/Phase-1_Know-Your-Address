@@ -44,13 +44,24 @@ def validateTheGivenAddress():
         session["address_validation_result"] = response.json()
         return response.status_code
     else:
-        # Store an error message in the session
-        session["address_validation_error"] = f"Error {response.status_code}: {response.text}"
+        # Console log the error message
         print(f"Error while fetching Google Maps API for the address validation: {response.status_code}: {response.text}")
         return response.status_code
-    
+
+
 @main_bp.route("/manageTheAddressValidationResult", methods=["POST"])
 def manageTheAddressValidationResult():
+    # Get the Google Maps API key stored in the configurtion file
+    google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
+
+    # Get the address validation result from the session
+    address_validation_result = session["address_validation_result"]
+
+    # Deal with the address validation result
+    # Check what the validation verdict is
+    if (address_validation_result.get("result", {}).get("verdict", {}).get("addressComplete") == False OR address_validation_result.get("result", {}).get("verdict", {}).get("validationGranularity") == "OTHER"):
+        # The address requires further input from the user - prompt the user to select the correct address from the list of suggestions
+
 
 
 @main_bp.route("/retrieveCoordinatesForTheAddress", methods=["POST"])
