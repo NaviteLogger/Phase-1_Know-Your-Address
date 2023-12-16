@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, current_app, request, jsonify
+from flask import Blueprint, render_template, current_app, request, jsonify, session
 import requests
 
 main_bp = Blueprint("main_bp", __name__)
@@ -38,12 +38,15 @@ def validateTheGivenAddress():
     response = requests.post(url, json=payload, headers=headers)
 
     # Step 5: Deal with the incoming response from the Google Maps API
+    # Check if the request was successful
     if response.status_code == 200:
-        # If the response is successful, return the response data
-        return response.json()
+        # Store the result in the session
+        session["address_validation_result"] = response.json()
+        return response.status_code
     else:
-        # If the response is unsuccessful, return the error message
-        return response.json()["error"]["message"]
+        # Store an error message in the session
+        session["address_validation_error"] = f"Error {response.status_code}: {response.text}"
+        return response.status_code
 
 
 @main_bp.route("/retrieveCoordinatesForTheAddress", methods=["POST"])
