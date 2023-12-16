@@ -8,9 +8,16 @@ main_bp = Blueprint("main_bp", __name__)
 def index():
     return render_template("index.html")
 
+
 @main_bp.route("/validateTheGivenAddress", methods=["POST"])
 def validateTheGivenAddress():
-    
+    # Get the Google Maps API key stored in the configurtion file
+    google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
+
+    # Get the search address from the form
+    address = request.json["address"]
+
+    # Step 1: Obtain the OAuth 2.0 access token
 
 
 @main_bp.route("/retrieveCoordinatesForTheAddress", methods=["POST"])
