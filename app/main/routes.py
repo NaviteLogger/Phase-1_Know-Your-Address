@@ -61,7 +61,8 @@ def manageTheAddressValidationResult():
     # Check what the validation verdict is
     if (address_validation_result.get("result", {}).get("verdict", {}).get("addressComplete") == False OR address_validation_result.get("result", {}).get("verdict", {}).get("validationGranularity") == "OTHER"):
         # The address requires further input from the user - prompt the user to select the correct address from the list of suggestions
-
+        # Store the unvalidated address in the session
+        session["unvalidated_address"] = address_validation_result.get("address")
 
 
 @main_bp.route("/retrieveCoordinatesForTheAddress", methods=["POST"])
