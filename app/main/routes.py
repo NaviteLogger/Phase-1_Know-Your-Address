@@ -71,3 +71,7 @@ def retrieveCoordinatesForAnAddress():
 def retrievePublicTransportInformationForTheGivenAddress():
     # Get the Google Maps API key stored in the configurtion file
     google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
+
+    # Extract the longitude and latitude from the json data
+    latitude = request.json["latitude"]
+    longitude = request.json["longitude"]
