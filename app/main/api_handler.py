@@ -18,4 +18,8 @@ def send_request_to_valide_address(address):
         "Content-Type": "application/json",
     }
 
-    
+    # Set the URL for the Google Maps API
+    url = f"https://addressvalidation.googleapis.com/v1:validateAddress?key={google_maps_api_key}"
+
+    # Send the request to the Google Maps API
+    response = requests.post(url, json=payload, headers=headers).json()
