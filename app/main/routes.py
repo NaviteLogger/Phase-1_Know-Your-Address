@@ -57,6 +57,7 @@ def validate_the_given_address():
 @main_bp.route("/manage-the-address-validation-result", methods=["POST"])
 def manage_the_address_validation_result():
     # Pass the received json data to the function that will send the request to the Google Maps API
+    response = send_api_request(request.json)
 
 
 @main_bp.route("/retrieve-coordinates-for-the-address", methods=["POST"])
