@@ -10,4 +10,4 @@ import pytest
 )
 def test_save_the_given_address_to_session(client, input_address, expected_status):
     response = client.post("/save-the-given-address-to-session", data={"address": input_address})
-    assert response.status == "success"
+    assert response.expected_status == "success"
