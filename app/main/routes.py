@@ -64,7 +64,7 @@ def manage_the_address_validation_result():
         # The address requires further input from the user - prompt the user to select the correct address from the list of suggestions
 
         # Return to the user the info about the address being invalid
-        return jsonify({"addres_validation_result": "invalid"})
+        return jsonify({"addresValidationResult": "invalid"})
 
     elif (
         address_validation_result["result"]["verdict"]["addressComplete"] == True
@@ -74,7 +74,7 @@ def manage_the_address_validation_result():
         # The address is valid but requires the confirmations from the user - prompt the user to select the desired address from the list of suggestions
 
         # Return to the user the info about the address being valid but requiring the confirmation from the user
-        return jsonify({"address_validation_result": "valid_but_requires_further_input"})
+        return jsonify({"addressValidationResult": "validButFurtherUserInputIsRequired"})
 
     elif (
         address_validation_result["result"]["verdict"]["validationGranularity"] != "PREMISE" and address_validation_result["result"]["verdict"]["validationGranularity"] != "SUB_PREMISE"
