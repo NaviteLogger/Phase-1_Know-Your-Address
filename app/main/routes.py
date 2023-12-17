@@ -16,6 +16,11 @@ def save_the_given_address_to_session():
     # Get the search address from the form
     address = request.json["address"]
 
+    # Save the address in the session
+    session["address"] = address
+
+    # Return the jsonified response
+    return jsonify("status": "success")
 
 # The following route is used to manage the address validation result and sending the appropriate response back to the client
 # Function will return the jsonified response containing the info about the address validation result
