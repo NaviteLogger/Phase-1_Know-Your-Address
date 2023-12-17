@@ -9,15 +9,7 @@ def app():
         yield client
 
 
-@pytest.mark.parametrize(
-    "input_address, expected_status_code, expected_returned_content",
-    [
-        ("sample_address", 200, b"ExpectedContent1"),
-        ("sample_address2", 200, b"ExpectedContent2"),
-        ("sample_address3", 200, b"ExpectedContent3"),
-    ],
-)
-def test_search_route(client, input_address, expected_status_code, expected_returned_content):
-    response = client.post("/search", data={"address": input_address})
+@pytest.mark.parametrize()
+def test_save_the_given_address_to_session(client, input_address, expected_status_code):
+    response = client.post("/save-the-given-address-to-session", data={"address": input_address})
     assert response.status_code == expected_status_code
-    assert expected_returned_content in response.data
