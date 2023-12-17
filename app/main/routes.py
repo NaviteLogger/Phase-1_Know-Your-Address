@@ -12,7 +12,7 @@ def index():
 # The following route is used to validate the given address by making a POST request to the Google Maps API
 # The Google Maps API will return a JSON response containing the validation result
 @main_bp.route("/validateTheGivenAddress", methods=["POST"])
-def validateTheGivenAddress():
+def validate_the_given_address():
     # Get the Google Maps API key stored in the configurtion file
     google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
 
