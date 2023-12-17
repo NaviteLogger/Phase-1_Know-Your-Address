@@ -26,8 +26,11 @@ def save_the_given_address_to_session():
 # The following route is used to call the Google Maps API and validate the address
 @main_bp.route("/validate-the-address", methods=["POST"])
 def validate_the_address():
-    # Pass the received json data to the function that will send the request to the Google Maps API
-    response = send_api_request(request.json)
+    # Get the Google Maps API key stored in the configurtion file
+    google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
+
+    # Get the address from the session
+    address = session["address"]
 
 
 @main_bp.route("/retrieve-coordinates-for-the-address", methods=["POST"])
