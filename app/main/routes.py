@@ -47,7 +47,7 @@ def validateTheGivenAddress():
         return response.status_code
     else:
         # Console log the error message
-        print(f"Error while fetching Google Maps API for the address validation: {response.status_code}: {response.text}")
+        print(f"Error while fetching Google Maps API for the inital address validation: {response.status_code}: {response.text}")
         return response.status_code
 
 
