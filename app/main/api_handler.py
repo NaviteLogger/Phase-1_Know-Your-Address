@@ -12,3 +12,10 @@ def send_request_to_valide_address(address):
             "addressLine1": address,
         }
     }
+
+    # Build the headers for the Google Maps API
+    headers = {
+        "Content-Type": "application/json",
+    }
+
+    
