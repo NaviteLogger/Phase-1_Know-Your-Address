@@ -77,6 +77,14 @@ def manageTheAddressValidationResult():
         # Return to the user the info about the address being valid but requiring the confirmation from the user
         return jsonify({"addressValidationResult": "validButRequiresFurtherInput"})
 
+    elif (
+        address_validation_result["result"]["verdict"]["validationGranularity"] != "PREMISE" and address_validation_result["result"]["verdict"]["validationGranularity"] != "SUB_PREMISE"
+    ) or address_validation_result["result"]["verdict"]["addressComplete"] == True:
+        # The address is valid and does not require any further input from the user
+
+        # Return to the user the info about the address being valid
+        return jsonify({"addressValidationResult": "valid"})
+
 
 @main_bp.route("/retrieveCoordinatesForTheAddress", methods=["POST"])
 def retrieveCoordinatesForTheAddress():
