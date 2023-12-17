@@ -55,10 +55,16 @@ def validate_the_given_address():
 # Function will return the jsonified response containing the info about the address validation result
 @main_bp.route("/manage-the-address-validation-result", methods=["POST"])
 def manage_the_address_validation_result():
-    # Get the address validation result from the session
-    address_validation_result = session["address_validation_result"]
+    if request.is_json:
+        # JSON request
+        json_data = request.get_json()
 
-    # Deal with the address validation result
+        # Deal with the JSON data
+        address_validation_result = json_data.get("address_validation_result")
+
+    else:
+        # Session request
+        address_validation_result = session.get("address_validation_result")
 
 
 @main_bp.route("/retrieve-coordinates-for-the-address", methods=["POST"])
