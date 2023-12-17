@@ -107,7 +107,7 @@ def retrieve_coordinates_for_the_address():
     geocoding_response = requests.get(geocoding_url).json()
 
 
-@main_bp.route("/retrievePublicTransportInformationForTheGivenAddress", methods=["POST"])
+@main_bp.route("/retrieve-public-transport-information-for-the-given-address", methods=["POST"])
 def retrievePublicTransportInformationForTheGivenAddress():
     # Get the Google Maps API key stored in the configurtion file
     google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
