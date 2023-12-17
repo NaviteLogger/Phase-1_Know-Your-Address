@@ -89,7 +89,7 @@ def manageTheAddressValidationResult():
         # The address's status is unknown
 
         # Return to the user the info about the address being invalid
-        return jsonify({"addressValidationResult": "invalid"})
+        return jsonify({"addressValidationResult": "unknownStatus"})
 
 
 @main_bp.route("/retrieveCoordinatesForTheAddress", methods=["POST"])
