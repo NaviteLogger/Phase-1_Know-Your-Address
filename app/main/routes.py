@@ -91,8 +91,8 @@ def manage_the_address_validation_result():
         return jsonify({"addressValidationResult": "unknownStatus"})
 
 
-@main_bp.route("/retrieveCoordinatesForTheAddress", methods=["POST"])
-def retrieveCoordinatesForTheAddress():
+@main_bp.route("/retrieve-coordinates-for-the-address", methods=["POST"])
+def retrieve_coordinates_for_the_address():
     # Get the Google Maps API key stored in the configurtion file
     google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
 
