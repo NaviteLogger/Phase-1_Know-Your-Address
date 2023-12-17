@@ -1,6 +1,5 @@
 from flask import Flask
 from dotenv import load_dotenv
-from app.main.routes import main_bp
 import os
 
 """ 
@@ -38,7 +37,7 @@ def create_app(test_config=None):
         print("FLASK_ENV environment variable is not set!")
 
     # Register blueprints within app context
-    from app.main import main as main_blueprint
+    from main import main as main_blueprint
 
     # Register the main blueprint
     app.register_blueprint(main_blueprint)
