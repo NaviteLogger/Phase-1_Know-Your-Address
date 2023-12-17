@@ -63,13 +63,11 @@ def manageTheAddressValidationResult():
     # Check what the validation verdict is
     if address_validation_result["result"]["verdict"]["addressComplete"] == False or address_validation_result.get["result"]["verdict"]["validationGranularity"] == "OTHER":
         # The address requires further input from the user - prompt the user to select the correct address from the list of suggestions
-        # Store the unvalidated address in the session
-        session["unvalidated_address"] = address_validation_result.get("address")
 
         # Return to the user the info about the address being invalid
         return jsonify({"addressValidationResult": "invalid"})
     
-    
+
 
 
 @main_bp.route("/retrieveCoordinatesForTheAddress", methods=["POST"])
