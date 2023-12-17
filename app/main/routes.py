@@ -77,8 +77,9 @@ def manage_the_address_validation_result():
         return jsonify({"addressValidationResult": "validButFurtherUserInputIsRequired"})
 
     elif (
-        address_validation_result["result"]["verdict"]["validationGranularity"] != "PREMISE" and address_validation_result["result"]["verdict"]["validationGranularity"] != "SUB_PREMISE"
-    ) or address_validation_result["result"]["verdict"]["addressComplete"] == True:
+        address_validation_result["result"]["verdict"]["validationGranularity"] != "PREMISE" and
+        address_validation_result["result"]["verdict"]["validationGranularity"] != "SUB_PREMISE") or
+        address_validation_result["result"]["verdict"]["addressComplete"] == True:
         # The address is valid and does not require any further input from the user
 
         # Return to the user the info about the address being valid
