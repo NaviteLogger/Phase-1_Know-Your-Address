@@ -13,12 +13,8 @@ def index():
 # The following route is used to initially save the address in the session
 @main_bp.route("/save-the-given-address-to-session", methods=["POST"])
 def save_the_given_address_to_session():
-    # Get the Google Maps API key stored in the configurtion file
-    google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
-
     # Get the search address from the form
     address = request.json["address"]
-    region_code = request.json["regionCode"]
 
     # Step 1: Build the JSON request body for the Google Maps API
     payload = {
