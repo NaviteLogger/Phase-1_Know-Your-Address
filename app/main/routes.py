@@ -53,9 +53,6 @@ def validateTheGivenAddress():
 
 @main_bp.route("/manageTheAddressValidationResult", methods=["POST"])
 def manageTheAddressValidationResult():
-    # Get the Google Maps API key stored in the configurtion file
-    google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
-
     # Get the address validation result from the session
     address_validation_result = session["address_validation_result"]
 
