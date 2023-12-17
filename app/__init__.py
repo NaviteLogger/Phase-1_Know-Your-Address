@@ -1,5 +1,6 @@
 from flask import Flask
 from dotenv import load_dotenv
+from app.main.routes import main_bp
 import os
 
 """ 

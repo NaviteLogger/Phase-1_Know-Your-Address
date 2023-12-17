@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, current_app, request, jsonify, session
 from app.main.api_handler import send_request_to_valide_address
-from app.main.routes import main_bp
 import requests
 
 main_bp = Blueprint("main_bp", __name__)
