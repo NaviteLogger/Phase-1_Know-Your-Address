@@ -32,7 +32,14 @@ def validate_the_address():
     # Call the function responsible for sending the request to the Google Maps API
     response = send_request_to_valide_address(address)
 
-    
+    # Check the status of the request
+    if response.status_code == 200:
+        # If the status code is 200, the request was successful
+        return jsonify({"status": "success", "message": "Address is valid", "redirect": "/retrieve-coordinates-for-the-address"})
+
+    else:
+        # If the status code is not 200, the request was not successful
+        return jsonify({"status": "error", "message": "Address is not valid"})
 
 
 @main_bp.route("/retrieve-coordinates-for-the-address", methods=["POST"])

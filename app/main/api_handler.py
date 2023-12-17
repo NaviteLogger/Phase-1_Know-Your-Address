@@ -24,11 +24,5 @@ def send_request_to_valide_address(address):
     # Send the request to the Google Maps API
     response = requests.post(url, json=payload, headers=headers).json()
 
-    # Check if the request was successful
-    if response.status_code == 200:
-        # The requets was successful
-        return jsonify({"status": "success", "message": "Address validation request was successful", "response": response})
-    else:
-        # The request was not successful
-        print("Error while sending the request to the Google Maps API for address validation, response:" + response)
-        return jsonify({"status": "error", "message": "Address validation request was not successful", "response": response})
+    # Return the response
+    return response
