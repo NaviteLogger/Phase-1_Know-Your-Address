@@ -37,9 +37,9 @@ def create_app(test_config=None):
         print("FLASK_ENV environment variable is not set!")
 
     # Register blueprints within app context
-    from main import main as main_blueprint
+    from main import main as main_bp
 
     # Register the main blueprint
-    app.register_blueprint(main_blueprint)
+    app.register_blueprint(main_bp)
 
     return app
