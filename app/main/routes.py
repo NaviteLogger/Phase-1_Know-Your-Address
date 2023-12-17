@@ -16,36 +16,6 @@ def save_the_given_address_to_session():
     # Get the search address from the form
     address = request.json["address"]
 
-    # Step 1: Build the JSON request body for the Google Maps API
-    payload = {
-        "address": {
-            "regionCode": region_code,
-            "addressLine1": address,
-        }
-    }
-
-    # Step 2: Build the headers for the Google Maps API
-    headers = {
-        "Content-Type": "application/json",
-    }
-
-    # Step 3: Build the URL for the Google Maps API
-    url = f"https://addressvalidation.googleapis.com/v1:validateAddress?key={google_maps_api_key}"
-
-    # Step 4: Send the request to the Google Maps API
-    response = requests.post(url, json=payload, headers=headers)
-
-    # Step 5: Deal with the incoming response from the Google Maps API
-    # Check if the request was successful
-    if response.status_code == 200:
-        # Store the result in the session
-        session["address_validation_result"] = response.json()
-        return response.status_code
-    else:
-        # Console log the error message
-        print(f"Error while fetching Google Maps API for the inital address validation: {response.status_code}: {response.text}")
-        return response.status_code
-
 
 # The following route is used to manage the address validation result and sending the appropriate response back to the client
 # Function will return the jsonified response containing the info about the address validation result
