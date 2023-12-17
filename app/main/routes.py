@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, current_app, request, jsonify, session
+from app.main.api_handler import send_api_request
 import requests
 
 main_bp = Blueprint("main_bp", __name__)
@@ -55,10 +56,7 @@ def validate_the_given_address():
 # Function will return the jsonified response containing the info about the address validation result
 @main_bp.route("/manage-the-address-validation-result", methods=["POST"])
 def manage_the_address_validation_result():
-    # Check which json it is: the one from the client or the already processed response from the Google Maps API
-    if "requestId" in request:
-        # Extract the requestId from the json data
-        
+    # Pass the received json data to the function that will send the request to the Google Maps API
 
 
 @main_bp.route("/retrieve-coordinates-for-the-address", methods=["POST"])
