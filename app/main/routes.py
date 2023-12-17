@@ -25,8 +25,8 @@ def save_the_given_address_to_session():
 
 # The following route is used to manage the address validation result and sending the appropriate response back to the client
 # Function will return the jsonified response containing the info about the address validation result
-@main_bp.route("/manage-the-address-validation-result", methods=["POST"])
-def manage_the_address_validation_result():
+@main_bp.route("/validate-the-address", methods=["POST"])
+def validate_the_address():
     # Pass the received json data to the function that will send the request to the Google Maps API
     response = send_api_request(request.json)
 
