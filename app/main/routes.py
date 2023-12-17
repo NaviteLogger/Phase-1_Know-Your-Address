@@ -85,6 +85,12 @@ def manageTheAddressValidationResult():
         # Return to the user the info about the address being valid
         return jsonify({"addressValidationResult": "valid"})
 
+    else:
+        # The address's status is unknown
+
+        # Return to the user the info about the address being invalid
+        return jsonify({"addressValidationResult": "invalid"})
+
 
 @main_bp.route("/retrieveCoordinatesForTheAddress", methods=["POST"])
 def retrieveCoordinatesForTheAddress():
