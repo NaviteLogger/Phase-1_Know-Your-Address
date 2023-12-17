@@ -8,4 +8,3 @@ def send_api_request(address_validation_result):
 
     else:
         # The incoming json is the one from the client
-        
