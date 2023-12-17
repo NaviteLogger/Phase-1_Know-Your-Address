@@ -10,8 +10,7 @@ def index():
     return render_template("index.html")
 
 
-# The following route is used to validate the given address by making a POST request to the Google Maps API
-# The Google Maps API will return a JSON response containing the validation result
+# The following route is used to initially save the address in the session
 @main_bp.route("/validate-the-given-address", methods=["POST"])
 def validate_the_given_address():
     # Get the Google Maps API key stored in the configurtion file
