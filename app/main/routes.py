@@ -67,7 +67,11 @@ def manageTheAddressValidationResult():
         # Return to the user the info about the address being invalid
         return jsonify({"addressValidationResult": "invalid"})
     
-
+    elif (address_validation_result["result"]["verdict"]["addressComplete"] == True and 
+        address_validation_result["result"]["verdict"]["validationGranularity"] != "OTHER" and 
+        (address_validation_result["result"]["verdict"]["hasInferredComponents"] == True or
+        address_validation_result["result"]["verdict"]["hasReplacesComponents"] == True)):
+        
 
 
 @main_bp.route("/retrieveCoordinatesForTheAddress", methods=["POST"])
