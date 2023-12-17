@@ -51,6 +51,8 @@ def validateTheGivenAddress():
         return response.status_code
 
 
+# The following route is used to manage the address validation result and sending the appropriate response back to the client
+# Function will return the jsonified response containing the info about the address validation result
 @main_bp.route("/manageTheAddressValidationResult", methods=["POST"])
 def manageTheAddressValidationResult():
     # Get the address validation result from the session
