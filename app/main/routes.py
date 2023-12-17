@@ -102,7 +102,7 @@ def retrieve_coordinates_for_the_address():
 
 
 @main_bp.route("/retrieve-public-transport-information-for-the-given-address", methods=["POST"])
-def retrievePublicTransportInformationForTheGivenAddress():
+def retrieve_public_transport_information_for_the_given_address():
     # Get the Google Maps API key stored in the configurtion file
     google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
 
