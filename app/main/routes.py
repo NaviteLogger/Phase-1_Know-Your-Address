@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, current_app, request, jsonify, session
-from app.main.api_handler import send_request_to_initially_valide_the_address
+from app.main.api_handler import send_request_to_initially_valide_the_address, assess_the_quality_of_the_address
 import requests
 
 main_bp = Blueprint("main_bp", __name__)
@@ -63,6 +63,7 @@ def assess_the_quality_of_the_address():
     response = session["google_maps_address_validation_api_response"]
 
     # Asses the quality of the address
+    addressQuality = assess_the_quality_of_the_address(response)
 
 
 @main_bp.route("/retrieve-public-transport-information-for-the-given-address", methods=["POST"])

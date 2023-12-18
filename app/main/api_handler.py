@@ -26,3 +26,5 @@ def send_request_to_initially_valide_the_address(address):
 
     # Return the response
     return response
+
+def assess_the_quality_of_the_address()
