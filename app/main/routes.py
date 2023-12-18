@@ -26,8 +26,8 @@ def save_the_given_address_to_session():
 # The following route is used to call the Google Maps API and initially validate the address
 @main_bp.route("/validate-the-address", methods=["POST"])
 def validate_the_address():
-    # Get the address from the session
-    address = session["address"]
+    # Get the address from the request
+    address = request.json["address"]
 
     # Call the function responsible for sending the request to the Google Maps API
     response = send_request_to_initially_valide_the_address(address)
@@ -50,8 +50,6 @@ def validate_the_address():
 def assess_the_validity_of_the_address():
     # Get the Google Maps API response from the session
     response = session["google_maps_api_response"]
-
-    
 
 
 @main_bp.route("/retrieve-public-transport-information-for-the-given-address", methods=["POST"])
