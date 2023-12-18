@@ -33,7 +33,7 @@ def validate_the_address():
     response = send_request_to_initially_valide_the_address(address).json()
 
     # Store the Google Maps API response in the session
-    session["google_maps_api_response"] = response
+    session["google_maps_address_validation_api_response"] = response
 
     # Check the status of the request
     if response.status_code == 200:
@@ -49,7 +49,7 @@ def validate_the_address():
 @main_bp.route("/asses-the-validity-of-the-address", methods=["POST"])
 def assess_the_validity_of_the_address():
     # Get the Google Maps API response from the session
-    response = session["google_maps_api_response"]
+    response = session["google_maps_address_validation_api_response"]
 
 
 @main_bp.route("/retrieve-public-transport-information-for-the-given-address", methods=["POST"])
