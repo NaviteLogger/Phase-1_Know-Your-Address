@@ -9,7 +9,7 @@ def send_request_to_initially_valide_the_address(address):
     # Build the request for the Google Maps API
     payload = {
         "address": {
-            "addressLine1": address,
+            "addressLines": [address],
         }
     }
 
