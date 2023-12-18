@@ -86,6 +86,25 @@ A website for checking the public transport accessibility for an address
 
 - [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
 
+## Git Pushing and PR
+
+1. Push to your branch
+    ```bash
+    git push origin feature/your-feature
+    ```
+
+    or
+
+    ```bash
+    git push origin development
+    ```
+
+2. Were your changes to be accepted, you will be able to merge your PR into production branch
+
+3. DO NOT delete 'development' and 'production' branches
+
+3. DO NOT push directly to 'production' branch
+
 ## Support
 
 Reach out to me at one of the following places!
