@@ -27,14 +27,15 @@ def send_request_to_initially_valide_the_address(address):
     # Return the response
     return response
 
+
 def assess_the_quality_of_the_address(response):
     # Assess the quality of the address
-    if(response["result"]["verdict"]["validationGranularity"] == "OTHER" or response["result"]["verdict"]["addressComplete"] == False)
+    if response["result"]["verdict"]["validationGranularity"] == "OTHER" or response["result"]["verdict"]["addressComplete"] == False:
         # The address is not valid and requires fixing
         return jsonify({"status": "fix", "message": "The address is not valid and requires fixing"})
-    elif(response["result"]["verdict"]["validationGranularity"] != "OTHER" and response["result"]["verdict"]["addressComplete"] == True and (response["result"]["verdict"]["hasInferredComponents"] == True or response["result"]["verdict"]["hasReplacedComponents"] == True)):
+    elif response["result"]["verdict"]["validationGranularity"] != "OTHER" and response["result"]["verdict"]["addressComplete"] == True and (response["result"]["verdict"]["hasInferredComponents"] == True or response["result"]["verdict"]["hasReplacedComponents"] == True):
         # The address is valid, but requires confirmation from the user
         return jsonify({"status": "confirm", "message": "The address is valid, but requires confirmation from the user"})
-    elif((response["result"]["verdict"]["validationGranularity"] == "PREMISE" or response["result"]["verdict"]["validationGranularity"] == "SUB_PREMISE") and response["result"]["verdict"]["addressComplete"] == True and response["result"]["verdict"]["hasInferredComponents"] == False and response["result"]["verdict"]["hasReplacedComponents"] == False):
+    elif (response["result"]["verdict"]["validationGranularity"] == "PREMISE" or response["result"]["verdict"]["validationGranularity"] == "SUB_PREMISE") and response["result"]["verdict"]["addressComplete"] == True and response["result"]["verdict"]["hasInferredComponents"] == False and response["result"]["verdict"]["hasReplacedComponents"] == False:
         # The address is valid
         return jsonify({"status": "valid", "message": "The address is valid"})
