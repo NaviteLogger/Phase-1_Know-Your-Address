@@ -33,6 +33,12 @@ def assess_the_quality_of_the_address(response):
     if response["result"]["verdict"]["validationGranularity"] == "OTHER" or response["result"]["verdict"]["addressComplete"] == False:
         # The address is not valid and requires fixing
         # Check which components of the address are missing/invalid
+        missingOrInvalidComponents = []
+
+        for component in response["result"]["address"]["addressComponents"]:
+            if component["confirmationLevel"] != "CONFIRMED":
+                missingOrInvalidComponents.append(component["type"])
+
         return jsonify({"status": "fix", "message": "The address is not valid and requires fixing"})
     elif response["result"]["verdict"]["validationGranularity"] != "OTHER" and response["result"]["verdict"]["addressComplete"] == True and (response["result"]["verdict"]["hasInferredComponents"] == True or response["result"]["verdict"]["hasReplacedComponents"] == True):
         # The address is valid, but requires confirmation from the user
