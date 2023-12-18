@@ -74,6 +74,18 @@ A website for checking the public transport accessibility for an address
 
 5. Create a new Pull Request
 
+### Code Style 
+
+- [PEP 8](https://www.python.org/dev/peps/pep-0008/)
+
+### Git Commit Messages
+
+- [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/)
+
+### Git Branch Naming
+
+- [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
+
 ## Support
 
 Reach out to me at one of the following places!
