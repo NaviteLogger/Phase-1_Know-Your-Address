@@ -30,7 +30,7 @@ def validate_the_address():
     address = request.json["address"]
 
     # Call the function responsible for sending the request to the Google Maps API
-    response = send_request_to_initially_valide_the_address(address)
+    response = send_request_to_initially_valide_the_address(address).json()
 
     # Store the Google Maps API response in the session
     session["google_maps_api_response"] = response
