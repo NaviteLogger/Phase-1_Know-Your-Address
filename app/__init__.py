@@ -24,7 +24,7 @@ def create_app(test_config=None):
         pass
 
     # Get the secret key from the environment variables
-    app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+    app.secret_key = app.config["SECRET_KEY"]
 
     # Load environment variables from .env file
     load_dotenv()
