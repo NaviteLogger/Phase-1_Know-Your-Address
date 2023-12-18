@@ -32,6 +32,9 @@ def validate_the_address():
     # Call the function responsible for sending the request to the Google Maps API
     response = send_request_to_initially_valide_the_address(address)
 
+    # Store the Google Maps API response in the session
+    session["google_maps_api_response"] = response
+
     # Check the status of the request
     if response.status_code == 200:
         # If the status code is 200, the request was successful
@@ -43,20 +46,10 @@ def validate_the_address():
         return jsonify({"status": "error", "message": "Request for address validation was not successful"})
 
 
-@main_bp.route("/retrieve-coordinates-for-the-address", methods=["POST"])
-def retrieve_coordinates_for_the_address():
-    # Get the Google Maps API key stored in the configurtion file
-    google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
-
-    # Get the search address from the form
-    address = request.json["address"]
-
-    # Step 1: Get the latitude and longitude of the address
-    # Build the URL for the Google Maps API
-    geocoding_url = f"https://maps.googleapis.com/maps/api/geocode/json?address={address}&key={google_maps_api_key}"
-
-    # Send the request to the Google Maps API
-    geocoding_response = requests.get(geocoding_url).json()
+@main_bp.route("/asses-the-validity-of-the-address", methods=["POST"])
+def assess_the_validity_of_the_address():
+    # Get the Google Maps API response from the session
+    response = session["google_maps_api_response"]
 
 
 @main_bp.route("/retrieve-public-transport-information-for-the-given-address", methods=["POST"])
