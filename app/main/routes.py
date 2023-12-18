@@ -51,6 +51,8 @@ def assess_the_validity_of_the_address():
     # Get the Google Maps API response from the session
     response = session["google_maps_api_response"]
 
+    
+
 
 @main_bp.route("/retrieve-public-transport-information-for-the-given-address", methods=["POST"])
 def retrieve_public_transport_information_for_the_given_address():
