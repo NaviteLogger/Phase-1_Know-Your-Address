@@ -23,7 +23,7 @@ def save_the_given_address_to_session():
     return jsonify({"status": "success", "message": "Address saved to session", "address": address, "redirect": "/validate-the-address"})
 
 
-# The following route is used to call the Google Maps API and validate the address
+# The following route is used to call the Google Maps API and initially validate the address
 @main_bp.route("/validate-the-address", methods=["POST"])
 def validate_the_address():
     # Get the address from the session
@@ -35,7 +35,7 @@ def validate_the_address():
     # Check the status of the request
     if response.status_code == 200:
         # If the status code is 200, the request was successful
-        return jsonify({"status": "success", "message": "Request for address validation was successful", "redirect": "/retrieve-coordinates-for-the-address"})
+        return jsonify({"status": "success", "message": "Request for address validation was successful", "redirect": "/assess-the-validity-of-the-address"})
 
     else:
         # If the status code is not 200, the request was not successful
