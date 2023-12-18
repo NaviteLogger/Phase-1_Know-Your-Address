@@ -35,7 +35,21 @@ def validate_the_address():
     # Check the status of the request
     if response.status_code == 200:
         # If the status code is 200, the request was successful
-        return jsonify({"status": "success", "message": "Request for address validation was successful", "redirect": "/assess-the-validity-of-the-address"})
+        try:
+            # Parse the JSON response
+            response = response.json()
+
+            # Store the response in the session
+            session["google_maps_address_validation_api_response"] = response
+
+            return jsonify({"status": "success", "message": "Request for address validation was successful", "redirect": "/assess-the-validity-of-the-address"})
+
+        except Exception as e:
+            # If an exception was raised, print the exception
+            print(e)
+
+            # Return the jsonified response
+            return jsonify({"status": "error", "message": "Request for address validation was not successful"})
 
     else:
         # If the status code is not 200, the request was not successful
