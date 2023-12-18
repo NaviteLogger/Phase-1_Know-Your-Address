@@ -1,15 +1,15 @@
-from flask import jsonify, current_app
+from flask import current_app
 import requests
 
 
-def send_request_to_valide_address(address):
+def send_request_to_initially_valide_the_address(address):
     # Get the Google Maps API key stored in the configurtion file
-    google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
+    google_maps_api_key = current_app.config["GOOGLE_MAPS_ADDRESS_VALIDATION_API_KEY"]
 
     # Build the request for the Google Maps API
     payload = {
         "address": {
-            "addressLine1": address,
+            "addressLines": [address],
         }
     }
 
