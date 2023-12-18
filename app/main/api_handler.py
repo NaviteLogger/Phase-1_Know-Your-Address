@@ -22,7 +22,7 @@ def send_request_to_initially_valide_the_address(address):
     url = f"https://addressvalidation.googleapis.com/v1:validateAddress?key={google_maps_api_key}"
 
     # Send the request to the Google Maps API
-    response = requests.post(url, json=payload, headers=headers).json()
+    response = requests.post(url, json=payload, headers=headers)
 
     # Return the response
     return response
