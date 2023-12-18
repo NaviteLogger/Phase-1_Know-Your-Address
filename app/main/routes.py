@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, current_app, request, jsonify, session
-from app.main.api_handler import send_request_to_valide_address
+from app.main.api_handler import send_request_to_initially_valide_the_address
 import requests
 
 main_bp = Blueprint("main_bp", __name__)
@@ -16,46 +16,40 @@ def save_the_given_address_to_session():
     # Get the search address from the form
     address = request.json["address"]
 
-    # Save the address in the session
+    # Store the address in the session
     session["address"] = address
 
     # Return the jsonified response
     return jsonify({"status": "success", "message": "Address saved to session", "address": address, "redirect": "/validate-the-address"})
 
 
-# The following route is used to call the Google Maps API and validate the address
+# The following route is used to call the Google Maps API and initially validate the address
 @main_bp.route("/validate-the-address", methods=["POST"])
 def validate_the_address():
-    # Get the address from the session
-    address = session["address"]
+    # Get the address from the request
+    address = request.json["address"]
 
     # Call the function responsible for sending the request to the Google Maps API
-    response = send_request_to_valide_address(address)
+    response = send_request_to_initially_valide_the_address(address).json()
+
+    # Store the Google Maps API response in the session
+    session["google_maps_address_validation_api_response"] = response
 
     # Check the status of the request
     if response.status_code == 200:
         # If the status code is 200, the request was successful
-        return jsonify({"status": "success", "message": "Address is valid", "redirect": "/retrieve-coordinates-for-the-address"})
+        return jsonify({"status": "success", "message": "Request for address validation was successful", "redirect": "/assess-the-validity-of-the-address"})
 
     else:
         # If the status code is not 200, the request was not successful
-        return jsonify({"status": "error", "message": "Address is not valid"})
+        print(f"Error while sending the request to the Google Maps API, status code: , {response.status_code}")
+        return jsonify({"status": "error", "message": "Request for address validation was not successful"})
 
 
-@main_bp.route("/retrieve-coordinates-for-the-address", methods=["POST"])
-def retrieve_coordinates_for_the_address():
-    # Get the Google Maps API key stored in the configurtion file
-    google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
-
-    # Get the search address from the form
-    address = request.json["address"]
-
-    # Step 1: Get the latitude and longitude of the address
-    # Build the URL for the Google Maps API
-    geocoding_url = f"https://maps.googleapis.com/maps/api/geocode/json?address={address}&key={google_maps_api_key}"
-
-    # Send the request to the Google Maps API
-    geocoding_response = requests.get(geocoding_url).json()
+@main_bp.route("/asses-the-validity-of-the-address", methods=["POST"])
+def assess_the_validity_of_the_address():
+    # Get the Google Maps API response from the session
+    response = session["google_maps_address_validation_api_response"]
 
 
 @main_bp.route("/retrieve-public-transport-information-for-the-given-address", methods=["POST"])
