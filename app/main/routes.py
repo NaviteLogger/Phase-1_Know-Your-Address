@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, current_app, request, jsonify, session
-from app.main.api_handler import send_request_to_valide_address
+from app.main.api_handler import send_request_to_initially_valide_the_address
 import requests
 
 main_bp = Blueprint("main_bp", __name__)
@@ -30,7 +30,7 @@ def validate_the_address():
     address = session["address"]
 
     # Call the function responsible for sending the request to the Google Maps API
-    response = send_request_to_valide_address(address)
+    response = send_request_to_initially_valide_the_address(address)
 
     # Check the status of the request
     if response.status_code == 200:
