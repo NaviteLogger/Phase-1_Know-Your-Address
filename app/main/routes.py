@@ -42,7 +42,7 @@ def validate_the_address():
             # Store the response in the session (raw response cannot be stored in the session, so it must be parsed to dict)
             session["google_maps_address_validation_api_response"] = response
 
-            return jsonify({"status": "success", "message": "Request for address validation was successful", "redirect": "/assess-the-validity-of-the-address"})
+            return jsonify({"status": "success", "message": "Request for address validation was successful", "redirect": "/assess-the-quality-of-the-address"})
 
         except Exception as e:
             # If an exception was raised, print the exception
@@ -57,10 +57,12 @@ def validate_the_address():
         return jsonify({"status": "error", "message": "Request for address validation was not successful"})
 
 
-@main_bp.route("/asses-the-validity-of-the-address", methods=["POST"])
-def assess_the_validity_of_the_address():
+@main_bp.route("/asses-the-quality-of-the-address", methods=["POST"])
+def assess_the_quality_of_the_address():
     # Get the Google Maps API response from the session
     response = session["google_maps_address_validation_api_response"]
+
+    # Asses the quality of the address
 
 
 @main_bp.route("/retrieve-public-transport-information-for-the-given-address", methods=["POST"])
