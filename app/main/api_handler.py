@@ -1,4 +1,4 @@
-from flask import current_app
+from flask import current_app, jsonify
 import requests
 
 
@@ -27,4 +27,10 @@ def send_request_to_initially_valide_the_address(address):
     # Return the response
     return response
 
-def assess_the_quality_of_the_address()
+def assess_the_quality_of_the_address(response):
+    # Assess the quality of the address
+    if(response["result"]["verdict"]["validationGranularity"] == "OTHER" or response["result"]["verdict"]["addressComplete"] == False)
+        # The address is not valid and requires fixing
+        return jsonify({"status": "fix", "message": "The address is not valid and requires fixing"})
+    elif(response["result"]["verdict"]["validationGranularity"] != "OTHER"
+        
