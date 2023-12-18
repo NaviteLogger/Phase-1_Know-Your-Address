@@ -46,14 +46,14 @@ def validate_the_address():
 
         except Exception as e:
             # If an exception was raised, print the exception
-            print("Error while parsing the JSON response from the Google Maps API, exception: ", e)
+            print("Error while parsing the JSON response from the Google Maps Address Validation API, exception: ", e)
 
             # Return the jsonified response
             return jsonify({"status": "error", "message": "Request for address validation was not successful"})
 
     else:
         # If the status code is not 200, the request was not successful
-        print(f"Error while sending the request to the Google Maps API, status code: , {response.status_code}")
+        print(f"Error while sending the request to the Google Maps Address Validation API, status code: , {response.status_code}")
         return jsonify({"status": "error", "message": "Request for address validation was not successful"})
 
 
