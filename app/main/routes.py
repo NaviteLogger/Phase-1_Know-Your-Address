@@ -32,9 +32,6 @@ def validate_the_address():
     # Call the function responsible for sending the request to the Google Maps API
     response = send_request_to_initially_valide_the_address(address)
 
-    # Store the Google Maps API response in the session
-    session["google_maps_address_validation_api_response"] = response
-
     # Check the status of the request
     if response.status_code == 200:
         # If the status code is 200, the request was successful
