@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, current_app, request, jsonify, session
-from app.main.api_handler import send_request_to_initially_valide_the_address
+from app.main.api_handler import send_request_to_initially_valide_the_address, assess_the_quality_of_the_address
 import requests
 
 main_bp = Blueprint("main_bp", __name__)
@@ -30,26 +30,40 @@ def validate_the_address():
     address = request.json["address"]
 
     # Call the function responsible for sending the request to the Google Maps API
-    response = send_request_to_initially_valide_the_address(address).json()
-
-    # Store the Google Maps API response in the session
-    session["google_maps_address_validation_api_response"] = response
+    response = send_request_to_initially_valide_the_address(address)
 
     # Check the status of the request
     if response.status_code == 200:
         # If the status code is 200, the request was successful
-        return jsonify({"status": "success", "message": "Request for address validation was successful", "redirect": "/assess-the-validity-of-the-address"})
+        try:
+            # Parse the JSON response
+            response = response.json()
+
+            # Store the response in the session (raw response cannot be stored in the session, so it must be parsed to dict)
+            session["google_maps_address_validation_api_response"] = response
+
+            return jsonify({"status": "success", "message": "Request for address validation was successful", "redirect": "/assess-the-quality-of-the-address"})
+
+        except Exception as e:
+            # If an exception was raised, print the exception
+            print("Error while parsing the JSON response from the Google Maps Address Validation API, exception: ", e)
+
+            # Return the jsonified response
+            return jsonify({"status": "error", "message": "Request for address validation was not successful"})
 
     else:
         # If the status code is not 200, the request was not successful
-        print(f"Error while sending the request to the Google Maps API, status code: , {response.status_code}")
+        print(f"Error while sending the request to the Google Maps Address Validation API, status code: , {response.status_code}")
         return jsonify({"status": "error", "message": "Request for address validation was not successful"})
 
 
-@main_bp.route("/asses-the-validity-of-the-address", methods=["POST"])
-def assess_the_validity_of_the_address():
+@main_bp.route("/asses-the-quality-of-the-address", methods=["POST"])
+def assess_the_quality_of_the_address():
     # Get the Google Maps API response from the session
     response = session["google_maps_address_validation_api_response"]
+
+    # Asses the quality of the address
+    addressQuality = assess_the_quality_of_the_address(response)
 
 
 @main_bp.route("/retrieve-public-transport-information-for-the-given-address", methods=["POST"])
