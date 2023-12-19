@@ -45,7 +45,16 @@ def assess_the_quality_of_the_address(response):
 
     elif response["result"]["verdict"]["validationGranularity"] != "OTHER" and response["result"]["verdict"]["addressComplete"] == True and (response["result"]["verdict"]["hasInferredComponents"] == True or response["result"]["verdict"]["hasReplacedComponents"] == True):
         # The address is valid, but requires confirmation from the user
-        # Check which components of the address were changed or corrected
+        # Check which components of the address were unconfirmed
+        unconfirmed_components = {}
+
+        for component in response["result"]["address"]["addressComponents"]:
+            if component["confirmationLevel"] == "UNCONFIRMED_BUT_PLAUSIBLE":
+                component_name = component["componentName"]["text"]
+                component_type = component["componentType"]
+                unconfirmed_components[component_name] = component_type
+
+        # Check which components of the address were corrected
         corrected_components = {}
 
         for component in response["result"]["address"]["addressComponents"]:
