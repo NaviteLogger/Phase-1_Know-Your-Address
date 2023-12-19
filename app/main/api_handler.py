@@ -67,4 +67,7 @@ def assess_the_quality_of_the_address(response):
 
     elif (response["result"]["verdict"]["validationGranularity"] == "PREMISE" or response["result"]["verdict"]["validationGranularity"] == "SUB_PREMISE") and response["result"]["verdict"]["addressComplete"] == True and response["result"]["verdict"]["hasInferredComponents"] == False and response["result"]["verdict"]["hasReplacedComponents"] == False:
         # The address is valid
-        return jsonify({"status": "valid", "message": "The address is valid"})
+        # Return the jsonified response containing the address
+        address = response["result"]["address"]["formattedAddress"]
+
+        return jsonify({"status": "valid", "message": "The address is valid", "address": address})
