@@ -127,3 +127,25 @@ def provide_location_suggestions_for_an_address(address):
 
     # Send the request to the Google Maps 'Places API'
     response = requests.post(url, json=payload, headers=headers)
+
+    # Check the status of the request
+    if response.status_code == 200:
+        # If the status code is 200, the request was successful
+        try:
+            # Parse the JSON response
+            response = response.json()
+
+            # Return the jsonified response
+            return jsonify({"status": "success", "message": "Request for location suggestions was successful", "response": response})
+
+        except Exception as e:
+            # If an exception was raised, print the exception
+            print("Error while parsing the JSON response from the Google Maps 'Places API', exception: ", e)
+
+            # Return the jsonified response
+            return jsonify({"status": "error", "message": "Request for location suggestions was not successful"})
+
+    else:
+        # If the status code is not 200, the request was not successful
+        print(f"Error while sending the request to the Google Maps 'Places API', status code: , {response.status_code}")
+        return jsonify({"status": "error", "message": "Request for location suggestions was not successful"})
