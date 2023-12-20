@@ -41,10 +41,67 @@ def assess_the_quality_of_the_address(response):
                 confirmation_level = component["confirmationLevel"]
                 missing_or_invalid_components[component_name] = confirmation_level
 
-        return jsonify({"status": "fix", "message": "The address is not valid and requires fixing", "missigOrInvalidComponents": missing_or_invalid_components})
+        # Assign the responseId to a variable for further use
+        response_id = response["responseId"]
+
+        # Pack the returned function elements into a dictionary
+        server_response = {
+            "status": "fix",
+            "message": "The address is not valid and requires fixing",
+            "result": {
+                "missingOrInvalidComponents": missing_or_invalid_components,
+            },
+            "responseId": response_id,
+        }
+
+        return jsonify({"serverResponse": server_response})
+
     elif response["result"]["verdict"]["validationGranularity"] != "OTHER" and response["result"]["verdict"]["addressComplete"] == True and (response["result"]["verdict"]["hasInferredComponents"] == True or response["result"]["verdict"]["hasReplacedComponents"] == True):
         # The address is valid, but requires confirmation from the user
-        return jsonify({"status": "confirm", "message": "The address is valid, but requires confirmation from the user"})
+        # Check which components of the address were unconfirmed
+        unconfirmed_components = {}
+
+        for component in response["result"]["address"]["addressComponents"]:
+            if component["confirmationLevel"] == "UNCONFIRMED_BUT_PLAUSIBLE":
+                component_name = component["componentName"]["text"]
+                component_type = component["componentType"]
+                unconfirmed_components[component_name] = component_type
+
+        # Check which components of the address were corrected
+        corrected_components = {}
+
+        for component in response["result"]["address"]["addressComponents"]:
+            if component["replaced"] == True:
+                component_name = component["componentName"]["text"]
+                component_type = component["componentType"]
+                corrected_components[component_name] = component_type
+
+        # Assign the responseId to a variable for further use
+        response_id = response["responseId"]
+
+        # Pack the returned function elements into a dictionary
+        server_response = {
+            "status": "confirm",
+            "message": "The address is valid, but requires confirmation from the user",
+            "result": {
+                "unconfirmedComponents": unconfirmed_components,
+                "correctedComponents": corrected_components,
+            },
+            "responseId": response_id,
+        }
+
+        return jsonify({"serverResponse": server_response})
+
     elif (response["result"]["verdict"]["validationGranularity"] == "PREMISE" or response["result"]["verdict"]["validationGranularity"] == "SUB_PREMISE") and response["result"]["verdict"]["addressComplete"] == True and response["result"]["verdict"]["hasInferredComponents"] == False and response["result"]["verdict"]["hasReplacedComponents"] == False:
         # The address is valid
-        return jsonify({"status": "valid", "message": "The address is valid"})
+        # Return the jsonified response containing the address
+        address = response["result"]["address"]["formattedAddress"]
+
+        # Pack the returned function elements into a dictionary
+        server_response = {
+            "status": "valid",
+            "message": "The address is valid",
+            "address": address,
+        }
+
+        return jsonify({"serverResponse": server_response})
