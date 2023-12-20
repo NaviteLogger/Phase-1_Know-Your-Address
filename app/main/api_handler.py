@@ -105,3 +105,47 @@ def assess_the_quality_of_the_address(response):
         }
 
         return jsonify({"serverResponse": server_response})
+
+def provide_location_suggestions_for_an_address(address):
+    # Get the Google Maps 'Places API' API key stored in the configurtion file
+    google_maps_places_api_key = current_app.config["GOOGLE_MAPS_PLACES_API_KEY"]
+
+    # Build the payload for the Google Maps 'Places API'
+    payload = {
+        "textQuery": address,
+    }
+
+    # Build the headers for the Google Maps 'Places API'
+    headers = {
+        "Content-Type": "application/json",
+        "X-Goog-Api-Key": google_maps_places_api_key,
+        "X-Goog-FieldMask": "places.displayName,places.formattedAddress,places.priceLevel",
+    }
+
+    # Build the url for the Google Maps 'Places API'
+    url = f"https://places.googleapis.com/v1/places:searchText"
+
+    # Send the request to the Google Maps 'Places API'
+    response = requests.post(url, json=payload, headers=headers)
+
+    # Check the status of the request
+    if response.status_code == 200:
+        # If the status code is 200, the request was successful
+        try:
+            # Parse the JSON response
+            response = response.json()
+
+            # Return the jsonified response
+            return jsonify({"status": "success", "message": "Request for location suggestions for the given address was successful", "response": response})
+
+        except Exception as e:
+            # If an exception was raised, print the exception
+            print("Error while parsing the JSON response from the Google Maps 'Places API', exception: ", e)
+
+            # Return the jsonified response
+            return jsonify({"status": "error", "message": "Request for location suggestions for the given address was not successful"})
+
+    else:
+        # If the status code is not 200, the request was not successful
+        print(f"Error while sending the request to the Google Maps 'Places API', status code: , {response.status_code}")
+        return jsonify({"status": "error", "message": "Request for location suggestions for the given address was not successful"})
