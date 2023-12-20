@@ -110,5 +110,19 @@ def provide_location_suggestions_for_an_address(address):
     # Get the Google Maps 'Places API' API key stored in the configurtion file
     google_maps_places_api_key = current_app.config["GOOGLE_MAPS_PLACES_API_KEY"]
 
+curl -X POST -d '{
+  "textQuery" : "Spicy Vegetarian Food in Sydney, Australia"
+}' \
+-H 'Content-Type: application/json' -H 'X-Goog-Api-Key: API_KEY' \
+-H 'X-Goog-FieldMask: places.displayName,places.formattedAddress,places.priceLevel' \
+'https://places.googleapis.com/v1/places:searchText'
+
+    # Build the payload for the Google Maps 'Places API'
+    payload = {
+        "textQuery": address,
+    }
+
+    
+
     # Build the url for the Google Maps 'Places API'
     url = f"https://places.googleapis.com/v1/places:searchText"
