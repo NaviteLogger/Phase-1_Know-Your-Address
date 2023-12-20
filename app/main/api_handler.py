@@ -54,7 +54,7 @@ def assess_the_quality_of_the_address(response):
             "responseId": response_id,
         }
 
-        return jsonify({"status": "fix", "message": "The address is not valid and requires fixing", "serverResponse": server_response})
+        return jsonify({"serverResponse": server_response})
 
     elif response["result"]["verdict"]["validationGranularity"] != "OTHER" and response["result"]["verdict"]["addressComplete"] == True and (response["result"]["verdict"]["hasInferredComponents"] == True or response["result"]["verdict"]["hasReplacedComponents"] == True):
         # The address is valid, but requires confirmation from the user
@@ -90,11 +90,13 @@ def assess_the_quality_of_the_address(response):
             "responseId": response_id,
         }
 
-        return jsonify({"status": "confirm", "message": "The address is valid, but requires confirmation from the user", "serverResponse": server_response})
+        return jsonify({"serverResponse": server_response})
 
     elif (response["result"]["verdict"]["validationGranularity"] == "PREMISE" or response["result"]["verdict"]["validationGranularity"] == "SUB_PREMISE") and response["result"]["verdict"]["addressComplete"] == True and response["result"]["verdict"]["hasInferredComponents"] == False and response["result"]["verdict"]["hasReplacedComponents"] == False:
         # The address is valid
         # Return the jsonified response containing the address
         address = response["result"]["address"]["formattedAddress"]
+
+        # Pack the returned function elements into a dictionary
 
         return jsonify({"status": "valid", "message": "The address is valid", "address": address})
