@@ -109,5 +109,6 @@ def assess_the_quality_of_the_address(response):
 def provide_location_suggestions_for_an_address(address):
     # Get the Google Maps 'Places API' API key stored in the configurtion file
     google_maps_places_api_key = current_app.config["GOOGLE_MAPS_PLACES_API_KEY"]
-    
-     
+
+    # Build the url for the Google Maps 'Places API'
+    url = f"https://places.googleapis.com/v1/places:searchText"
