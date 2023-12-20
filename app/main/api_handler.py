@@ -90,7 +90,7 @@ def assess_the_quality_of_the_address(response):
             "responseId": response_id,
         }
 
-        return jsonify({"status": "confirm", "message": "The address is valid, but requires confirmation from the user", "unconfirmedComponents": unconfirmed_components, "correctedComponents": corrected_components})
+        return jsonify({"status": "confirm", "message": "The address is valid, but requires confirmation from the user", "serverResponse": server_response})
 
     elif (response["result"]["verdict"]["validationGranularity"] == "PREMISE" or response["result"]["verdict"]["validationGranularity"] == "SUB_PREMISE") and response["result"]["verdict"]["addressComplete"] == True and response["result"]["verdict"]["hasInferredComponents"] == False and response["result"]["verdict"]["hasReplacedComponents"] == False:
         # The address is valid
