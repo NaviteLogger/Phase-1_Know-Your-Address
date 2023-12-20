@@ -148,4 +148,4 @@ def provide_location_suggestions_for_an_address(address):
     else:
         # If the status code is not 200, the request was not successful
         print(f"Error while sending the request to the Google Maps 'Places API', status code: , {response.status_code}")
-        return jsonify({"status": "error", "message": "Request for location suggestions was not successful"})
+        return jsonify({"status": "error", "message": "Request for location suggestions for the given address was not successful"})
