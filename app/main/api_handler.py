@@ -104,4 +104,4 @@ def assess_the_quality_of_the_address(response):
             "address": address,
         }
 
-        return jsonify({})
+        return jsonify({"serverResponse": server_response})
