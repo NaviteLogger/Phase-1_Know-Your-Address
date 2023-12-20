@@ -65,6 +65,9 @@ def assess_the_quality_of_the_address():
     # Asses the quality of the address
     addressQuality = assess_the_quality_of_the_address(response)
 
+    # Forward the function response to the client
+    return addressQuality
+
 
 @main_bp.route("/retrieve-public-transport-information-for-the-given-address", methods=["POST"])
 def retrieve_public_transport_information_for_the_given_address():
