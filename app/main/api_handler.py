@@ -98,5 +98,10 @@ def assess_the_quality_of_the_address(response):
         address = response["result"]["address"]["formattedAddress"]
 
         # Pack the returned function elements into a dictionary
+        server_response = {
+            "status": "valid",
+            "message": "The address is valid",
+            "address": address,
+        }
 
-        return jsonify({"status": "valid", "message": "The address is valid", "address": address})
+        return jsonify({})
