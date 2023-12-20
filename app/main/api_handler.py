@@ -76,6 +76,20 @@ def assess_the_quality_of_the_address(response):
                 component_type = component["componentType"]
                 corrected_components[component_name] = component_type
 
+        # Assign the responseId to a variable for further use
+        response_id = response["responseId"]
+
+        # Pack the returned function elements into a dictionary
+        server_response = {
+            "status": "confirm",
+            "message": "The address is valid, but requires confirmation from the user",
+            "result": {
+                "unconfirmedComponents": unconfirmed_components,
+                "correctedComponents": corrected_components,
+            },
+            "responseId": response_id,
+        }
+
         return jsonify({"status": "confirm", "message": "The address is valid, but requires confirmation from the user", "unconfirmedComponents": unconfirmed_components, "correctedComponents": corrected_components})
 
     elif (response["result"]["verdict"]["validationGranularity"] == "PREMISE" or response["result"]["verdict"]["validationGranularity"] == "SUB_PREMISE") and response["result"]["verdict"]["addressComplete"] == True and response["result"]["verdict"]["hasInferredComponents"] == False and response["result"]["verdict"]["hasReplacedComponents"] == False:
