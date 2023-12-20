@@ -41,7 +41,20 @@ def assess_the_quality_of_the_address(response):
                 confirmation_level = component["confirmationLevel"]
                 missing_or_invalid_components[component_name] = confirmation_level
 
-        return jsonify({"status": "fix", "message": "The address is not valid and requires fixing", "missigOrInvalidComponents": missing_or_invalid_components})
+        # Assign the responseId to a variable for further use
+        response_id = response["responseId"]
+
+        # Pack the returned function elements into a dictionary
+        server_response = {
+            "status": "fix",
+            "message": "The address is not valid and requires fixing",
+            "result": {
+                "missingOrInvalidComponents": missing_or_invalid_components,
+            },
+            "responseId": response_id,
+        }
+
+        return jsonify({"status": "fix", "message": "The address is not valid and requires fixing", "serverResponse": server_response})
 
     elif response["result"]["verdict"]["validationGranularity"] != "OTHER" and response["result"]["verdict"]["addressComplete"] == True and (response["result"]["verdict"]["hasInferredComponents"] == True or response["result"]["verdict"]["hasReplacedComponents"] == True):
         # The address is valid, but requires confirmation from the user
