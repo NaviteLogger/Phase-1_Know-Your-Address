@@ -122,7 +122,14 @@ curl -X POST -d '{
         "textQuery": address,
     }
 
-    
+    # Build the headers for the Google Maps 'Places API'
+    headers = {
+        "Content-Type": "application/json",
+        "X-Goog-Api-Key": google_maps_places_api_key,
+        "X-Goog-FieldMask": "places.displayName,places.formattedAddress,places.priceLevel",
+    }
 
     # Build the url for the Google Maps 'Places API'
     url = f"https://places.googleapis.com/v1/places:searchText"
+
+    # Send the request to the Google Maps 'Places API'
