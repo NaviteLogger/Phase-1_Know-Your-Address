@@ -28,3 +28,14 @@ def test_validate_the_address(client, input_address, expected_api_response_statu
     response = client.post("/validate-the-address", json={"address": input_address})
 
     assert response.status_code == 200
+
+
+def test_assess_the_quality_of_the_address(client):
+    response = client.post("/asses-the-quality-of-the-address")
+
+    assert response.status_code == 200
+
+    data = response.json
+    assert data["status"] == "success"
+    assert data["message"] == "Request for address validation was successful"
+    assert data["redirect"] == "/assess-the-quality-of-the-address"
