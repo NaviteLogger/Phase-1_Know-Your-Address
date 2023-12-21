@@ -57,7 +57,7 @@ def validate_the_address():
         return jsonify({"status": "error", "message": "Request for address validation was not successful"})
 
 
-@main_bp.route("/asses-the-quality-of-the-address", methods=["POST"])
+@main_bp.route("/assess-the-quality-of-the-address", methods=["POST"])
 def assess_the_quality_of_the_address():
     # Get the Google Maps API response from the session
     response = session["google_maps_address_validation_api_response"]
