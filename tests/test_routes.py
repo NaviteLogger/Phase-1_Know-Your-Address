@@ -5,7 +5,7 @@ from app import create_app
 @pytest.fixture
 def app():
     app = create_app()
-    app.config.from_object("config.TestingConfig")
+    app.config.from_object("instance.config.TestingConfig")
     return app
 
 
