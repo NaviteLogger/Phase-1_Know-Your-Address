@@ -45,12 +45,11 @@ def test_validate_the_address(client, input_address, expected_api_response_statu
 
 
 def test_assess_the_quality_of_the_address(client):
-    with client as client:
-        response = client.post("/assess-the-quality-of-the-address")
+    response = client.post("/assess-the-quality-of-the-address")
 
-        assert response.status_code == 200
+    assert response.status_code == 200
 
-        data = response.json
-        assert data["status"] == "success"
-        assert data["message"] == "Request for address validation was successful"
-        assert data["redirect"] == "/assess-the-quality-of-the-address"
+    data = response.json
+    assert data["status"] == "success"
+    assert data["message"] == "Request for address validation was successful"
+    assert data["redirect"] == "/assess-the-quality-of-the-address"
