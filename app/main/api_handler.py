@@ -109,7 +109,7 @@ def assess_the_quality_of_the_address(response):
 
 def suggest_the_correct_address(address):
     # Get the Google Maps 'Places API' API key stored in the configurtion file
-    google_maps_places_api_key = current_app.config["GOOGLE_MAPS_PLACES_API_KEY"]
+    google_maps_places_new_api_key = current_app.config["GOOGLE_MAPS_PLACES_NEW_API_KEY"]
 
     # Build the payload for the Google Maps 'Places API'
     payload = {
@@ -119,7 +119,7 @@ def suggest_the_correct_address(address):
     # Build the headers for the Google Maps 'Places API'
     headers = {
         "Content-Type": "application/json",
-        "X-Goog-Api-Key": google_maps_places_api_key,
+        "X-Goog-Api-Key": google_maps_places_new_api_key,
         "X-Goog-FieldMask": "places.displayName,places.formattedAddress,places.priceLevel",
     }
 
