@@ -29,7 +29,7 @@ def validate_the_address():
     # Get the address from the request
     address = request.json["address"]
 
-    # Call the function responsible for sending the request to the Google Maps API
+    # Call the function responsible for sending the validation request to the Google Maps API
     response = send_request_to_initially_valide_the_address(address)
 
     # Check the status of the request
@@ -57,7 +57,7 @@ def validate_the_address():
         return jsonify({"status": "error", "message": "Request for address validation was not successful"})
 
 
-@main_bp.route("/asses-the-quality-of-the-address", methods=["POST"])
+@main_bp.route("/assess-the-quality-of-the-address", methods=["POST"])
 def assess_the_quality_of_the_address():
     # Get the Google Maps API response from the session
     response = session["google_maps_address_validation_api_response"]
@@ -71,9 +71,5 @@ def assess_the_quality_of_the_address():
 
 @main_bp.route("/retrieve-public-transport-information-for-the-given-address", methods=["POST"])
 def retrieve_public_transport_information_for_the_given_address():
-    # Get the Google Maps API key stored in the configurtion file
-    google_maps_api_key = current_app.config["GOOGLE_MAPS_API_KEY"]
-
-    # Extract the longitude and latitude from the json data
-    latitude = request.json["latitude"]
-    longitude = request.json["longitude"]
+    # Get the address from the request
+    address = request.json["address"]
