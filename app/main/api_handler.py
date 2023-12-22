@@ -191,7 +191,8 @@ def retrieve_public_transport_information_for_the_given_address(address):
     # Build the url for the Google Maps 'Places API'
     url = f"https://places.googleapis.com/v1/places:nearbysearch"
 
-    
+    # Send the request to the Google Maps 'Places API'
+    response = requests.post(url, json=payload, headers=headers)
 
 
 def retrieve_geographical_coordinates_for_the_given_address(address):
