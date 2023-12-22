@@ -69,11 +69,13 @@ def assess_the_quality_of_the_address():
     return addressQuality
 
 
+@main_bp.route("/revalidate-the-address", methods=["POST"])
+def revalidate_the_address():
+    # Get the address from the session
+    address = session["address"]
+
+
 @main_bp.route("/retrieve-public-transport-information-for-the-given-address", methods=["POST"])
 def retrieve_public_transport_information_for_the_given_address():
     # Get the Google Maps API key stored in the configurtion file
     google_maps_places_new_api_key = current_app.config["GOOGLE_MAPS_PLACES_NEW_API_KEY"]
-
-    # Extract the longitude and latitude from the json data
-    latitude = request.json["latitude"]
-    longitude = request.json["longitude"]
