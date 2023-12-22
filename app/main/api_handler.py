@@ -168,7 +168,7 @@ def retrieve_public_transport_information_for_the_given_address(address):
 
     # Build the payload for the Google Maps 'Places API'
     payload = {
-        "includedTypes" : ["airport", "bus_station", "light_rail_station", "subway_station", "train_station", "transit_station"],
+        "includedTypes": ["airport", "bus_station", "light_rail_station", "subway_station", "train_station", "transit_station"],
         "maxResults": 50,
         "locationRestriction": {
             "circle": {
@@ -188,7 +188,11 @@ def retrieve_public_transport_information_for_the_given_address(address):
         "X-Goog-FieldMask": "places.displayName,places.formattedAddress,places.priceLevel",
     }
 
+    # Build the url for the Google Maps 'Places API'
+    url = f"https://places.googleapis.com/v1/places:nearbysearch"
+
     
+
 
 def retrieve_geographical_coordinates_for_the_given_address(address):
     # Get the Google Maps 'GeoCoding API' API key stored in the configurtion file
