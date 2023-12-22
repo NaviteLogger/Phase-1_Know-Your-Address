@@ -101,7 +101,10 @@ def assess_the_quality_of_the_address(response):
         server_response = {
             "status": "valid",
             "message": "The address is valid",
-            "address": address,
+            "result": {
+                "address": address,
+                "redirectionUrl": "/retrieve-public-transport-information-for-the-given-address",
+            },
         }
 
         return jsonify({"serverResponse": server_response})
