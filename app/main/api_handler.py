@@ -182,6 +182,13 @@ def retrieve_public_transport_information_for_the_given_address(address):
     }
 
     # Build the headers for the Google Maps 'Places API'
+    headers = {
+        "Content-Type": "application/json",
+        "X-Goog-Api-Key": google_maps_places_new_api_key,
+        "X-Goog-FieldMask": "places.displayName,places.formattedAddress,places.priceLevel",
+    }
+
+    
 
 def retrieve_geographical_coordinates_for_the_given_address(address):
     # Get the Google Maps 'GeoCoding API' API key stored in the configurtion file
