@@ -183,6 +183,26 @@ def retrieve_geographical_coordinates_for_the_given_address(address):
     url = f"https://maps.googleapis.com/maps/api/geocode/json?address={address}&key={google_maps_geocoding_api_key}"
 
     # Send the request to the Google Maps 'GeoCoding API'
-    
+    response = requests.get(url)
 
+    # Check the status of the request
+    if response.status_code == 200:
+        # If the status code is 200, the request was successful
+        try:
+            # Parse the JSON response
+            response = response.json()
 
+            # Return the jsonified response
+            return jsonify({"status": "success", "message": "Request for geographical coordinates for the given address was successful", "response": response})
+
+        except Exception as e:
+            # If an exception was raised, print the exception
+            print("Error while parsing the JSON response from the Google Maps 'GeoCoding API', exception: ", e)
+
+            # Return the jsonified response
+            return jsonify({"status": "error", "message": "Request for geographical coordinates for the given address was not successful"})
+
+    else:
+        # If the status code is not 200, the request was not successful
+        print(f"Error while sending the request to the Google Maps 'GeoCoding API', status code: , {response.status_code}")
+        return jsonify({"status": "error", "message": "Request for geographical coordinates for the given address was not successful"})
