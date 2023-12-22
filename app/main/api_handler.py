@@ -211,6 +211,11 @@ def retrieve_public_transport_information_for_the_given_address(address):
             # Return the jsonified response
             return jsonify({"status": "error", "message": "Request for public transport information for the given address was not successful"})
 
+    else:
+        # If the status code is not 200, the request was not successful
+        print(f"Error while sending the request to the Google Maps 'Places API', status code: , {response.status_code}")
+        return jsonify({"status": "error", "message": "Request for public transport information for the given address was not successful"})
+
 
 def retrieve_geographical_coordinates_for_the_given_address(address):
     # Get the Google Maps 'GeoCoding API' API key stored in the configurtion file
