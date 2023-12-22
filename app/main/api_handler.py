@@ -192,6 +192,12 @@ def retrieve_geographical_coordinates_for_the_given_address(address):
             # Parse the JSON response
             response = response.json()
 
+            # Extract the latitude and longitude from the response
+            latitude = response["results"][0]["geometry"]["location"]["lat"]
+            longitude = response["results"][0]["geometry"]["location"]["lng"]
+
+            
+
             # Return the jsonified response
             return jsonify({"status": "success", "message": "Request for geographical coordinates for the given address was successful", "response": response})
 
