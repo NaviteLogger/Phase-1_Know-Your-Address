@@ -153,3 +153,8 @@ def suggest_the_correct_address(address):
         # If the status code is not 200, the request was not successful
         print(f"Error while sending the request to the Google Maps 'Places API', status code: , {response.status_code}")
         return jsonify({"status": "error", "message": "Request for location suggestions for the given address was not successful"})
+
+
+def retrieve_public_transport_information_for_the_given_address(address):
+    # Get the Google Maps 'Places API' API key stored in the configurtion file
+    google_maps_places_new_api_key = current_app.config["GOOGLE_MAPS_PLACES_NEW_API_KEY"]
