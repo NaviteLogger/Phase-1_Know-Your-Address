@@ -29,7 +29,7 @@ def validate_the_address():
     # Get the address from the request
     address = request.json["address"]
 
-    # Call the function responsible for sending the request to the Google Maps API
+    # Call the function responsible for sending the validation request to the Google Maps API
     response = send_request_to_initially_valide_the_address(address)
 
     # Check the status of the request
@@ -73,6 +73,8 @@ def assess_the_quality_of_the_address():
 def revalidate_the_address():
     # Get the address from the session
     address = session["address"]
+
+    # Call the function responsible for sending the revalidation request to the Google Maps API
 
 
 @main_bp.route("/retrieve-public-transport-information-for-the-given-address", methods=["POST"])
