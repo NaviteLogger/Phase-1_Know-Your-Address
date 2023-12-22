@@ -69,14 +69,6 @@ def assess_the_quality_of_the_address():
     return addressQuality
 
 
-@main_bp.route("/revalidate-the-address", methods=["POST"])
-def revalidate_the_address():
-    # Get the address from the session
-    address = session["address"]
-
-    # Call the function responsible for sending the revalidation request to the Google Maps API
-
-
 @main_bp.route("/retrieve-public-transport-information-for-the-given-address", methods=["POST"])
 def retrieve_public_transport_information_for_the_given_address():
     # Get the Google Maps API key stored in the configurtion file
