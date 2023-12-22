@@ -159,7 +159,12 @@ def retrieve_public_transport_information_for_the_given_address(address):
     # Get the Google Maps 'Places API' API key stored in the configurtion file
     google_maps_places_new_api_key = current_app.config["GOOGLE_MAPS_PLACES_NEW_API_KEY"]
 
-    
+    # Get the longitude and latitude of the given address - call the function responsible for sending the request to the Google Maps 'GeoCoding API'
+    response = retrieve_geographical_coordinates_for_the_given_address(address)
+
+    # Extract the longitude and latitude from the response
+    latitude = response["latitude"]
+    longitude = response["longitude"]
 
     # Build the payload for the Google Maps 'Places API'
     payload = {
@@ -168,8 +173,8 @@ def retrieve_public_transport_information_for_the_given_address(address):
         "locationRestriction": {
             "circle": {
                 "center": {
-                    "latitude": ,
-                    "longitude": ,
+                    "latitude": latitude,
+                    "longitude": longitude,
                 },
                 "radiusMeters": 10000,
             },
