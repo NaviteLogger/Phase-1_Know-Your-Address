@@ -150,27 +150,3 @@ def suggest_the_correct_address(address):
         # If the status code is not 200, the request was not successful
         print(f"Error while sending the request to the Google Maps 'Places API', status code: , {response.status_code}")
         return jsonify({"status": "error", "message": "Request for location suggestions for the given address was not successful"})
-
-
-def send_request_to_revalidate_the_address(response_id):
-    # Get the Google Maps API key stored in the configurtion file
-    google_maps_api_key = current_app.config["GOOGLE_MAPS_ADDRESS_VALIDATION_API_KEY"]
-
-    # Build the request for the Google Maps API
-    payload = {
-        "responseId": response_id,
-    }
-
-    # Build the headers for the Google Maps API
-    headers = {
-        "Content-Type": "application/json",
-    }
-
-    # Set the URL for the Google Maps API
-    url = f"https://addressvalidation.googleapis.com/v1:revalidateAddress?key={google_maps_api_key}"
-
-    # Send the request to the Google Maps API
-    response = requests.post(url, json=payload, headers=headers)
-
-    # Return the response
-    return response
