@@ -159,7 +159,30 @@ def retrieve_public_transport_information_for_the_given_address(address):
     # Get the Google Maps 'Places API' API key stored in the configurtion file
     google_maps_places_new_api_key = current_app.config["GOOGLE_MAPS_PLACES_NEW_API_KEY"]
 
+
+
     # Build the payload for the Google Maps 'Places API'
     payload = {
         "includedTypes" : ["airport", "bus_station", "light_rail_station", "subway_station", "train_station", "transit_station"],
+        "maxResults": 50,
+        "locationRestriction": {
+            "circle": {
+                "center": {
+                    "latitude": ,
+                    "longitude": ,
+                },
+                "radiusMeters": 10000,
+            },
     }
+
+def retrieve_geographical_coordinates_for_the_given_address(address):
+    # Get the Google Maps 'GeoCoding API' API key stored in the configurtion file
+    google_maps_geocoding_api_key = current_app.config["GOOGLE_MAPS_GEOCODING_API_KEY"]
+
+    # Build the url for the Google Maps 'GeoCoding API'
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?address={address}&key={google_maps_geocoding_api_key}"
+
+    # Send the request to the Google Maps 'GeoCoding API'
+    
+
+
