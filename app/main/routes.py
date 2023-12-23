@@ -78,3 +78,6 @@ def retrieve_public_transport_information_for_the_given_address():
     else:
         # If the address is not URL encoded, return an error message, as the server should not accept the address in this form
         return jsonify({"status": "error", "message": "The address is not URL encoded"})
+
+    # Now that the address is URL encoded, send the request to the function responsible for retrieving the public transport information
+    
