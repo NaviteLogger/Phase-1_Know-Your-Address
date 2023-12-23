@@ -155,7 +155,7 @@ def suggest_the_correct_address(address):
         return jsonify({"status": "error", "message": "Request for location suggestions for the given address was not successful"})
 
 
-def retrieve_public_transport_information_for_the_given_address(address):
+def retrieve_public_transport_information_for_the_given_address_funcion(address):
     # Get the Google Maps 'Places API' API key stored in the configurtion file
     google_maps_places_new_api_key = current_app.config["GOOGLE_MAPS_PLACES_NEW_API_KEY"]
 
