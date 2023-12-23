@@ -37,10 +37,7 @@ def validate_the_address():
             # Parse the JSON response
             response = response.json()
 
-            # Store the response in the session (raw response cannot be stored in the session, so it must be parsed to dict)
-            session["google_maps_address_validation_api_response"] = response
-
-            return jsonify({"status": "success", "message": "Request for address validation was successful", "redirect": "/assess-the-quality-of-the-address"})
+            return jsonify({"status": "success", "message": "Request for address validation was successful", "redirect": "/assess-the-quality-of-the-address", "response": response})
 
         except Exception as e:
             # If an exception was raised, print the exception
