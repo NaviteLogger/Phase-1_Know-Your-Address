@@ -54,8 +54,8 @@ def validate_the_address():
 
 @main_bp.route("/assess-the-quality-of-the-address", methods=["POST"])
 def assess_the_quality_of_the_address():
-    # Get the Google Maps API response from the session
-    response = session["google_maps_address_validation_api_response"]
+    # Get the Google Maps API response from the request
+    response = request.json["response"]
 
     # Asses the quality of the address
     addressQuality = assess_the_quality_of_the_address(response)
