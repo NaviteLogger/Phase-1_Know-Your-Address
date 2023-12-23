@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, current_app, request, jsonify, session
 from app.main.api_handler import send_request_to_initially_valide_the_address, assess_the_quality_of_the_address_function
+from app.main.additional_functions import is_url_encoded
 import requests
 
 main_bp = Blueprint("main_bp", __name__)
@@ -71,4 +72,3 @@ def retrieve_public_transport_information_for_the_given_address():
 
     # For the 'Places API' to work, the address must be URL encoded due to the middleware function 'Geocoding API'
     # Check whether the address is already URL encoded
-    
