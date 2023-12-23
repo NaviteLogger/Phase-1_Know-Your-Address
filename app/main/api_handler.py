@@ -28,7 +28,7 @@ def send_request_to_initially_valide_the_address(address):
     return response
 
 
-def assess_the_quality_of_the_address(response):
+def assess_the_quality_of_the_address_function(response):
     # Assess the quality of the address
     if response["result"]["verdict"]["validationGranularity"] == "OTHER" or response["result"]["verdict"]["addressComplete"] == False:
         # The address is not valid and requires fixing
@@ -155,7 +155,7 @@ def suggest_the_correct_address(address):
         return jsonify({"status": "error", "message": "Request for location suggestions for the given address was not successful"})
 
 
-def retrieve_public_transport_information_for_the_given_address(address):
+def retrieve_public_transport_information_for_the_given_address_funcion(address):
     # Get the Google Maps 'Places API' API key stored in the configurtion file
     google_maps_places_new_api_key = current_app.config["GOOGLE_MAPS_PLACES_NEW_API_KEY"]
 
