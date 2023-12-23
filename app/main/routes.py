@@ -74,3 +74,6 @@ def retrieve_public_transport_information_for_the_given_address():
     if address.find("%") == -1 or address.find(" ") != -1:
         # If the address is not URL encoded, encode it
         address = requests.utils.quote(address)
+    else:
+        # If the address is already URL encoded, do nothing
+        pass
