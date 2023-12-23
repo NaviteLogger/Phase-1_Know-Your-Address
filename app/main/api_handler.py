@@ -28,7 +28,7 @@ def send_request_to_initially_valide_the_address(address):
     return response
 
 
-def assess_the_quality_of_the_address(response):
+def assess_the_quality_of_the_address_function(response):
     # Assess the quality of the address
     if response["result"]["verdict"]["validationGranularity"] == "OTHER" or response["result"]["verdict"]["addressComplete"] == False:
         # The address is not valid and requires fixing
