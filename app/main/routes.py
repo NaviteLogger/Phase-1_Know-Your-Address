@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, current_app, request, jsonify, session
-from app.main.api_handler import send_request_to_initially_valide_the_address, assess_the_quality_of_the_address
+import app.main.api_handler as api_handler
+import app.main.additional_functions as additional_functions
 import requests
+
 
 main_bp = Blueprint("main_bp", __name__)
 
@@ -11,13 +13,11 @@ def index():
 
 
 # The following route is used to initially save the address in the session
+# Actually this function was created to test whether the communication between the client and the server works
 @main_bp.route("/save-the-given-address-to-session", methods=["POST"])
 def save_the_given_address_to_session():
     # Get the search address from the form
     address = request.json["address"]
-
-    # Store the address in the session
-    session["address"] = address
 
     # Return the jsonified response
     return jsonify({"status": "success", "message": "Address saved to session", "address": address, "redirect": "/validate-the-address"})
@@ -30,7 +30,7 @@ def validate_the_address():
     address = request.json["address"]
 
     # Call the function responsible for sending the validation request to the Google Maps API
-    response = send_request_to_initially_valide_the_address(address)
+    response = api_handler.send_request_to_initially_valide_the_address(address)
 
     # Check the status of the request
     if response.status_code == 200:
@@ -39,10 +39,7 @@ def validate_the_address():
             # Parse the JSON response
             response = response.json()
 
-            # Store the response in the session (raw response cannot be stored in the session, so it must be parsed to dict)
-            session["google_maps_address_validation_api_response"] = response
-
-            return jsonify({"status": "success", "message": "Request for address validation was successful", "redirect": "/assess-the-quality-of-the-address"})
+            return jsonify({"status": "success", "message": "Request for address validation was successful", "redirect": "/assess-the-quality-of-the-address", "response": response})
 
         except Exception as e:
             # If an exception was raised, print the exception
@@ -59,11 +56,11 @@ def validate_the_address():
 
 @main_bp.route("/assess-the-quality-of-the-address", methods=["POST"])
 def assess_the_quality_of_the_address():
-    # Get the Google Maps API response from the session
-    response = session["google_maps_address_validation_api_response"]
+    # Get the Google Maps API response from the request
+    response = request.json["response"]
 
     # Asses the quality of the address
-    addressQuality = assess_the_quality_of_the_address(response)
+    addressQuality = api_handler.assess_the_quality_of_the_address_function(response)
 
     # Forward the function response to the client
     return addressQuality
@@ -73,3 +70,18 @@ def assess_the_quality_of_the_address():
 def retrieve_public_transport_information_for_the_given_address():
     # Get the address from the request
     address = request.json["address"]
+
+    # For the 'Places API' to work, the address must be URL encoded due to the middleware function 'Geocoding API'
+    # Check whether the address is already URL encoded
+    if additional_functions.is_url_encoded(address):
+        # If the address is already URL encoded, do nothing
+        pass
+    else:
+        # If the address is not URL encoded, return an error message, as the server should not accept the address in this form
+        return jsonify({"status": "error", "message": "The address is not URL encoded"})
+
+    # Now that the address is URL encoded, send the request to the function responsible for retrieving the public transport information
+    response = api_handler.retrieve_public_transport_information_for_the_given_address_funcion(address)
+
+    # Return the response
+    return response
