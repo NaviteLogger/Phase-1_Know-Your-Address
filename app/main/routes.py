@@ -72,3 +72,9 @@ def retrieve_public_transport_information_for_the_given_address():
 
     # For the 'Places API' to work, the address must be URL encoded due to the middleware function 'Geocoding API'
     # Check whether the address is already URL encoded
+    if is_url_encoded(address):
+        # If the address is already URL encoded, do nothing
+        pass
+    else:
+        # If the address is not URL encoded, return an error message, as the server should not accept the address in this form
+        return jsonify({"status": "error", "message": "The address is not URL encoded"})
