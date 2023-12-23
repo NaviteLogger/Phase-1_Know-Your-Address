@@ -1,2 +1,8 @@
+import urllib.parse
+
+
 def is_url_encoded(address):
-    decoded = 
+    decoded = urllib.parse.unquote(address)
+    encoded = urllib.parse.quote(decoded)
+
+    
