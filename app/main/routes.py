@@ -11,13 +11,11 @@ def index():
 
 
 # The following route is used to initially save the address in the session
+# Actually this function was created to test whether the communication between the client and the server works
 @main_bp.route("/save-the-given-address-to-session", methods=["POST"])
 def save_the_given_address_to_session():
     # Get the search address from the form
     address = request.json["address"]
-
-    # Store the address in the session
-    session["address"] = address
 
     # Return the jsonified response
     return jsonify({"status": "success", "message": "Address saved to session", "address": address, "redirect": "/validate-the-address"})
