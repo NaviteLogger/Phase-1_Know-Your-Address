@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, current_app, request, jsonify, session
-from app.main.api_handler import send_request_to_initially_valide_the_address, assess_the_quality_of_the_address_function
+from app.main.api_handler import *
 from app.main.additional_functions import is_url_encoded
 import requests
 
@@ -80,4 +80,3 @@ def retrieve_public_transport_information_for_the_given_address():
         return jsonify({"status": "error", "message": "The address is not URL encoded"})
 
     # Now that the address is URL encoded, send the request to the function responsible for retrieving the public transport information
-    
