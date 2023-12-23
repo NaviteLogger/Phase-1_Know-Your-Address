@@ -82,3 +82,6 @@ def retrieve_public_transport_information_for_the_given_address():
 
     # Now that the address is URL encoded, send the request to the function responsible for retrieving the public transport information
     response = api_handler.retrieve_public_transport_information_for_the_given_address_funcion(address)
+
+    # Return the response
+    return response
