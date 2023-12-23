@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, current_app, request, jsonify, session
-import app.main.api_handler
-import app.main.additional_functions
+import app.main.api_handler as api_handler
+import app.main.additional_functions as additional_functions
 import requests
 
 
