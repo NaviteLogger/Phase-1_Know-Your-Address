@@ -30,7 +30,7 @@ def validate_the_address():
     address = request.json["address"]
 
     # Call the function responsible for sending the validation request to the Google Maps API
-    response = send_request_to_initially_valide_the_address(address)
+    response = api_handler.send_request_to_initially_valide_the_address(address)
 
     # Check the status of the request
     if response.status_code == 200:
@@ -60,7 +60,7 @@ def assess_the_quality_of_the_address():
     response = request.json["response"]
 
     # Asses the quality of the address
-    addressQuality = assess_the_quality_of_the_address_function(response)
+    addressQuality = api_handler.assess_the_quality_of_the_address_function(response)
 
     # Forward the function response to the client
     return addressQuality
@@ -73,7 +73,7 @@ def retrieve_public_transport_information_for_the_given_address():
 
     # For the 'Places API' to work, the address must be URL encoded due to the middleware function 'Geocoding API'
     # Check whether the address is already URL encoded
-    if is_url_encoded(address):
+    if additional_functions.is_url_encoded(address):
         # If the address is already URL encoded, do nothing
         pass
     else:
