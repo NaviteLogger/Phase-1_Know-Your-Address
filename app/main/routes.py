@@ -81,3 +81,4 @@ def retrieve_public_transport_information_for_the_given_address():
         return jsonify({"status": "error", "message": "The address is not URL encoded"})
 
     # Now that the address is URL encoded, send the request to the function responsible for retrieving the public transport information
+    response = api_handler.retrieve_public_transport_information_for_the_given_address_funcion(address)
