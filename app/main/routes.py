@@ -68,3 +68,5 @@ def assess_the_quality_of_the_address():
 def retrieve_public_transport_information_for_the_given_address():
     # Get the address from the request
     address = request.json["address"]
+
+    # For the 'Places API' to work, the address must be URL encoded due to the middleware function 'Geocoding API'
