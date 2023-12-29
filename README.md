@@ -18,6 +18,7 @@ A website for checking the public transport accessibility for an address
 
 - [Python >= 3.6](https://www.python.org/downloads/)
 - [pip](https://pip.pypa.io/en/stable/installing/)
+- [Node.js](https://nodejs.org/en/download/)
 - [npm](https://www.npmjs.com/get-npm)
 
 ### Installing
@@ -34,7 +35,7 @@ A website for checking the public transport accessibility for an address
     pip install -r requirements.txt
     ```
 
-4. Install Node.js dependencies
+4. Install Node.js dependencies in the 'vite-project' directory
     ```bash
     npm install
     ```
