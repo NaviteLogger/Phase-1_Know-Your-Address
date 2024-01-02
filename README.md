@@ -18,13 +18,14 @@ A website for checking the public transport accessibility for an address
 
 - [Python >= 3.6](https://www.python.org/downloads/)
 - [pip](https://pip.pypa.io/en/stable/installing/)
-- [npm](https://www.npmjs.com/get-npm)
+- [Node.js](https://nodejs.org/en/download/)
+- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/)
 
 ### Installing
 
 1. Clone the repository
     ```bash
-    git clone
+    git clone https://github.com/NaviteLogger/KnowYourAddress.git
     ```
 
 2. Install Python, pip, Node.js and npm
@@ -34,7 +35,7 @@ A website for checking the public transport accessibility for an address
     pip install -r requirements.txt
     ```
 
-4. Install Node.js dependencies
+4. Install Node.js dependencies in the 'vite-project' directory
     ```bash
     npm install
     ```
@@ -50,6 +51,11 @@ A website for checking the public transport accessibility for an address
 1. Run the server
     ```bash
     flask run
+    ```
+
+2. For development purposes, run the frontend server in the 'vite-project' directory
+    ```bash
+    npm run dev
     ```
 
 ## Contributing
