@@ -19,7 +19,7 @@ A website for checking the public transport accessibility for an address
 - [Python >= 3.6](https://www.python.org/downloads/)
 - [pip](https://pip.pypa.io/en/stable/installing/)
 - [Node.js](https://nodejs.org/en/download/)
--[npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/)
+- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/)
 
 ### Installing
 
