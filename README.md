@@ -53,6 +53,11 @@ A website for checking the public transport accessibility for an address
     flask run
     ```
 
+2. For development purposes, run the frontend server in the 'vite-project' directory
+    ```bash
+    npm run dev
+    ```
+
 ## Contributing
 
 1. Fork it 
