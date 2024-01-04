@@ -6,22 +6,23 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'know-your-address'
-copyright = '2024, Marek, Igor, Maciej'
-author = 'Marek, Igor, Maciej'
+project = "KnowYourAddress"
+copyright = "2024, Marek, Igor and Maciej"
+author = "Marek, Igor and Maciej"
+release = "0.1"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.autodoc', 'sphinxcontrib.httpdomain']
+extensions = ["sphinx.ext.autodoc", "sphinxcontrib.httpdomain"]
 
-templates_path = ['_templates']
+
+templates_path = ["_templates"]
 exclude_patterns = []
-
 
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'alabaster'
-html_static_path = ['_static']
+html_theme = "alabaster"
+html_static_path = ["_static"]
