@@ -10,13 +10,16 @@ Welcome to *KnowYourAddress's* documentation!
    :maxdepth: 2
    :caption: Contents:
 
-.. note::
-
-   This documentation is a work in progress.
 
 Indices and tables
 ==================
 
+
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+API
+===
+
+.. autofunction:: app.create_app
