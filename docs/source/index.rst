@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to *KnowYourAddress's* documentation!
-===========================================
+========================================
 
 .. toctree::
    :maxdepth: 2
@@ -17,6 +17,35 @@ Welcome to *KnowYourAddress's* documentation!
    faq
    contributing
    changelog
+
+Introduction
+=============
+Provide an overview of your project and its goals.
+
+Installation
+=============
+Guide users through the installation process.
+
+Usage
+=============
+Explain how to use your project.
+
+API Reference
+=============
+.. automodule:: app
+   :members:
+
+FAQ
+=============
+Answer frequently asked questions.
+
+Contributing
+=============
+Provide information for contributors.
+
+Changelog
+=============
+Document changes and version history.
 
 Indices and Tables
 ==================
